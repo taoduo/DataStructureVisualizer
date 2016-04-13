@@ -4,6 +4,9 @@ import argparse
 import json
 import urllib.request
 
+'''
+Get the names of all restaurants within a distance from a location
+'''
 def get_restaurants(location_la, location_lo, radius):
     # generate the base url
     base_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={0},{1}&radius={2}&type=restaurant&key=AIzaSyB0Hh0DFNk-xNXHDZuA9dRAxGTJRcCV1cA'
@@ -23,6 +26,9 @@ def get_restaurants(location_la, location_lo, radius):
         result_list.append(restaurant)
     return result_list
 
+'''
+Get details of the restaurant from its place_id
+'''
 def get_details(place_id):
     # generate the base url
     base_url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid={0}&key=AIzaSyB0Hh0DFNk-xNXHDZuA9dRAxGTJRcCV1cA'
@@ -39,20 +45,27 @@ def get_details(place_id):
     return json_from_server['result']
 
 def main(args):
+    # search for restaurants
     restaurant_list = get_restaurants(args.latitude, args.longitude, args.radius)
     index = 1
+
+    # list and print them
     print ('**** Search Results ****')
     for restaurant in restaurant_list:
         name = restaurant['name']
         print ('{0}. {1}'.format(index, name))
         index = index + 1
     print ('************************')
+
+    # let the users get details of the restaurants
     while True:
         try:
             selected_index = input('Please enter an index to get details (or \'quit\' to quit):')
             if selected_index == 'quit':
                 break
             print ('---------- {0} ----------'.format(restaurant_list[int(selected_index) - 1]['name']))
+
+            # query again to get the details
             details = get_details(restaurant_list[int(selected_index) - 1]['place_id'])
             print (details['formatted_address'])
             print (details['formatted_phone_number'])
