@@ -1,14 +1,25 @@
 #!/usr/bin/env python3
+'''
+    This is a program built from the example program given in CS257 by
+    Professor Jeff Ondich. This program uses Google place API to get
+    all nearby restaurants once given a location and a distance from the
+    location. After returning all the name of the restaurants, users can
+    also query for the details of those retaurants.
+'''  
+
 import sys
 import argparse
 import json
 import urllib.request
-
-'''
-Get the names of all restaurants within a distance from a location
-'''
+   
 def get_restaurants(location_la, location_lo, radius):
-    # generate the base url
+    '''
+    Get the names of all restaurants within a distance from a location.
+    The query returns some information about the restaurant but we are
+    not going to use them as details. We are going to query again to
+    another API call Google Place Details to get better information about
+    the restaurant.
+    '''
     base_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={0},{1}&radius={2}&type=restaurant&key=AIzaSyB0Hh0DFNk-xNXHDZuA9dRAxGTJRcCV1cA'
     url = base_url.format(location_la, location_lo, radius)
     # get data from the server
@@ -19,21 +30,23 @@ def get_restaurants(location_la, location_lo, radius):
     except Exception as e:
         # Problems with network access or JSON parsing.
         return []
-
-    # get the data returned into result_list
+    # put the data into result_list and return them
     result_list = []
     for restaurant in json_from_server['results']:
         result_list.append(restaurant)
     return result_list
 
-'''
-Get details of the restaurant from its place_id
-'''
+
 def get_details(place_id):
-    # generate the base url
+    '''
+    Get details of the restaurant from its place_id.
+    This is used after the restaurant lists are given.
+    The place_id is retrieved from the information given
+    in the previous query.
+    '''
     base_url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid={0}&key=AIzaSyB0Hh0DFNk-xNXHDZuA9dRAxGTJRcCV1cA'
     url = base_url.format(place_id)
-    # get data from the server
+    # get data from the server as json_from_server
     try:
         data_from_server = urllib.request.urlopen(url).read()
         string_from_server = data_from_server.decode('utf-8')
@@ -41,7 +54,6 @@ def get_details(place_id):
     except Exception as e:
         # Problems with network access or JSON parsing.
         return {}
-    # get the data returned into result_list
     return json_from_server['result']
 
 def main(args):
@@ -83,10 +95,6 @@ def main(args):
             print ('Please enter a valid input')
 
 if __name__ == '__main__':
-    # When I use argparse to parse my command line, I usually
-    # put the argparse setup here in the global code, and then
-    # call a function called main to do the actual work of
-    # the program.
     parser = argparse.ArgumentParser(description='Get all restaurants near a location from Google Maps')
 
     parser.add_argument('latitude',
