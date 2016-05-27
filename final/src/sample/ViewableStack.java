@@ -1,9 +1,5 @@
 package sample;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,24 +7,30 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-/**
- * Created by duotao on 5/26/16.
- */
-public class ViewableQueue implements ViewableDataStructure {
-    private Queue<Integer> queue;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+
+public class ViewableStack implements ViewableDataStructure {
+
+    private Stack<Integer> stack;
+
     /**
-     * Empty queue constructor
+     * Empty stack constructor
      */
-    public ViewableQueue() {
-        this.queue = new ArrayDeque<>();
+    public ViewableStack() {
+        this.stack = new Stack<Integer>();
     }
+
     /**
-     * Initialize queue with a string
+     * Initialize stack with a string
      * @param initString Data structure serialized
      */
-    public ViewableQueue(String initString) {
+    public ViewableStack(String initString) {
 
     }
+
     /**
      * Returns visual representation of nodes of the data structure
      * @return
@@ -46,9 +48,9 @@ public class ViewableQueue implements ViewableDataStructure {
     public List<ControlWrapper> getControls() {
         List<ControlWrapper> list = new ArrayList<ControlWrapper>();
         TextField textField = new TextField();
-        Button button = new Button("Enqueue");
+        Button button = new Button("Push");
         EventHandler<ActionEvent> handler = (event) -> {
-            this.queue.add(Integer.parseInt(textField.getText()));
+            this.stack.add(Integer.parseInt(textField.getText()));
         };
         ControlWrapper wrapper = new ControlWrapper(textField, button, handler);
         list.add(wrapper);
