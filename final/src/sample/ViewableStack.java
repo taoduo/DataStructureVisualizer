@@ -1,6 +1,5 @@
 package sample;
 
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -11,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-
+/**
+ * The model class of Stack in MVC
+ * @author Claire Tagoe, Duo Tao and Yijun Wang
+ */
 public class ViewableStack implements ViewableDataStructure {
 
     private Stack<Integer> stack;

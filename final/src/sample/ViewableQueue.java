@@ -12,7 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 /**
- * Created by duotao on 5/26/16.
+ * The model class of Queue in MVC
+ * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public class ViewableQueue implements ViewableDataStructure {
     private Queue<Integer> queue;
@@ -22,6 +23,7 @@ public class ViewableQueue implements ViewableDataStructure {
     public ViewableQueue() {
         this.queue = new ArrayDeque<>();
     }
+
     /**
      * Initialize queue with a string
      * @param initString Data structure serialized
@@ -29,6 +31,7 @@ public class ViewableQueue implements ViewableDataStructure {
     public ViewableQueue(String initString) {
 
     }
+
     /**
      * Returns visual representation of nodes of the data structure
      * @return

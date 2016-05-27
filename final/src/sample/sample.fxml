@@ -33,11 +33,9 @@
              <ComboBox fx:id="selector" prefWidth="300.0" promptText="Data Structures">
                  <items>
                      <FXCollections fx:factory="observableArrayList">
-                         <String fx:value="Binary Tree" />
+                         <String fx:value="Queue" />
                          <String fx:value="Stack" />
                          <String fx:value="Heap" />
-                         <String fx:value="Graph" />
-                         <String fx:value="Hash Table" />
                      </FXCollections>
                  </items>
                <VBox.margin>

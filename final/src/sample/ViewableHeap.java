@@ -5,14 +5,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
 
 /**
- * Created by tagoec on 5/27/16.
+ * The model class of Heap in MVC
+ * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public class ViewableHeap implements ViewableDataStructure{
     private PriorityQueue<Integer> heap;
