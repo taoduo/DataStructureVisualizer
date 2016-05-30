@@ -111,8 +111,14 @@
             <Label prefHeight="17.0" prefWidth="308.0" text="4. Operate the Data Structure" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox fx:id="buttonVBox" prefHeight="100.0" prefWidth="85.0" />
-                  <VBox fx:id="textFieldVBox" prefHeight="100.0" prefWidth="122.0" />
+                  <VBox fx:id="buttonVBox" prefHeight="100.0" prefWidth="85.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="Operations" />
+                     </children></VBox>
+                  <VBox fx:id="textFieldVBox" prefHeight="100.0" prefWidth="122.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" text="Inputs" />
+                     </children></VBox>
                   <VBox prefHeight="100.0" prefWidth="99.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="24.0" prefWidth="102.0" text="Method Output" />
