@@ -5,30 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
 /**
  * The model class of Queue in MVC
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
-public class ViewableQueue implements ViewableDataStructure {
+public class VisualizedQueue extends VisualizedDataStructure {
     private Queue<Integer> queue;
     /**
      * Empty queue constructor
      */
-    public ViewableQueue() {
+    public VisualizedQueue() {
         this.queue = new ArrayDeque<>();
     }
 
     /**
-     * Initialize queue with a string
-     * @param initString Data structure serialized
+     * Reset the heap with random numbers
+     * @param size The size of the heap
+     * @param range The range of random numbers
      */
-    public ViewableQueue(String initString) {
+    @Override
+    public void randomize(int size, int range) {
 
     }
 
@@ -48,7 +46,7 @@ public class ViewableQueue implements ViewableDataStructure {
     @Override
     public List<ControlWrapper> getControls() {
         List<ControlWrapper> list = new ArrayList<ControlWrapper>();
-        TextField textField = new TextField();
+        /*TextField textField = new TextField();
         Button button = new Button("enqueue");
         EventHandler<ActionEvent> handler = (event) -> {
             this.queue.offer(Integer.parseInt(textField.getText()));
@@ -69,8 +67,19 @@ public class ViewableQueue implements ViewableDataStructure {
             this.queue.peek();
         };
         ControlWrapper wrapper2 = new ControlWrapper(textField2, button2, handler2);
-        list.add(wrapper2);
+        list.add(wrapper2);*/
         // Other operations go here...
         return list;
+    }
+
+    @Override
+    public String serialize() {
+        String result = "";
+        return result;
+    }
+
+    @Override
+    public VisualizedQueue deserialize(String stringRepresentation) {
+        return null;
     }
 }
