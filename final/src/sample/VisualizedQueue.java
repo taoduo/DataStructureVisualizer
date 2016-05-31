@@ -1,12 +1,14 @@
 package sample;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * The model class of Queue in MVC
@@ -19,12 +21,12 @@ public class VisualizedQueue extends VisualizedDataStructure {
      */
     public VisualizedQueue(Label label) {
         super(label);
-        this.queue = new ArrayDeque<>();
+        this.queue = new ArrayDeque<Integer>();
     }
 
     /**
-     * Reset the heap with random numbers
-     * @param size The size of the heap
+     * Reset the queue with random numbers
+     * @param size The size of the queue
      * @param range The range of random numbers
      */
     @Override
@@ -38,7 +40,16 @@ public class VisualizedQueue extends VisualizedDataStructure {
      */
     @Override
     public List<Node> getNodes() {
-        return null;
+        List<Node> list = new ArrayList<>();
+        if (this.queue.isEmpty()) {
+            return list;
+        } else {
+            for (Iterator<Integer> itr = this.queue.iterator(); itr.hasNext(); itr.next()){
+            //Should do something with value in queue later but this loop prints it for now
+                System.out.println(itr);
+            }
+        }
+        return list;
     }
 
     /**
@@ -48,38 +59,78 @@ public class VisualizedQueue extends VisualizedDataStructure {
     @Override
     public List<ControlWrapper> getControls() {
         List<ControlWrapper> list = new ArrayList<ControlWrapper>();
-        /*TextField textField = new TextField();
-        Button button = new Button("enqueue");
-        EventHandler<ActionEvent> handler = (event) -> {
-            this.queue.offer(Integer.parseInt(textField.getText()));
-        };
-        ControlWrapper wrapper = new ControlWrapper(textField, button, handler);
-
+        // add the push operation
+        Button button1 = new Button("Enqueue");
         TextField textField1 = new TextField();
-        Button button1 = new Button("dequeue");
-        EventHandler<ActionEvent> handler1 = (event) -> {
-            textField1.setText(Integer.toString(this.queue.poll()));
+        EventHandler<ActionEvent> eventHandler1 = event -> {
+            if (this.isInt(textField1.getText())) {
+                this.queue.offer(Integer.parseInt(textField1.getText()));
+                outputLabel.setText(textField1.getText());
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Input Error");
+                alert.setHeaderText("Non-numeric input");
+                alert.setContentText("\"" + textField1.getText() + "\" is not a Integer");
+                alert.showAndWait();
+            }
         };
-        ControlWrapper wrapper1 = new ControlWrapper(textField1, button1, handler1);
-        list.add(wrapper1);
+        ControlWrapper controlWrapper1 = new ControlWrapper(textField1, button1, eventHandler1);
+        list.add(controlWrapper1);
 
+        // add the pop operation
+        Button button2 = new Button("Dequeue");
         TextField textField2 = new TextField();
-        Button button2 = new Button("getFront");
-        EventHandler<ActionEvent> handler2 = (event) -> {
-            this.queue.peek();
+        textField2.setDisable(true);
+        EventHandler<ActionEvent> eventHandler2 = event -> {
+            if (this.queue.isEmpty()) {
+                outputLabel.setText("Empty");
+                return;
+            }
+            outputLabel.setText(Integer.toString(this.queue.poll()));
         };
-        ControlWrapper wrapper2 = new ControlWrapper(textField2, button2, handler2);
-        list.add(wrapper2);*/
-        // Other operations go here...
+        ControlWrapper controlWrapper2 = new ControlWrapper(textField2, button2, eventHandler2);
+        list.add(controlWrapper2);
+
+        // add the pop operation
+        Button button3 = new Button("Peek");
+        TextField textField3 = new TextField();
+        textField3.setDisable(true);
+        EventHandler<ActionEvent> eventHandler3 = event -> {
+            if (this.queue.isEmpty()) {
+                outputLabel.setText("Empty");
+                return;
+            }
+            outputLabel.setText(Integer.toString(this.queue.peek()));
+        };
+        ControlWrapper controlWrapper3 = new ControlWrapper(textField3, button3, eventHandler3);
+        list.add(controlWrapper3);
         return list;
     }
 
+
+    /**
+     * Helper method to check if a string represents an integer
+     * @param s the string to be checked
+     * @return true if it represents an integer, false if not
+     */
+    private boolean isInt(String s) {
+        return s.matches("[-+]?\\d+");
+    }
+
+    /**
+     * Serialize the stack into a string
+     * @return the serialization output as a string
+     */
     @Override
     public String serialize() {
         String result = "";
         return result;
     }
-
+    /**
+     * Deserialize the string and get the queue back
+     * @param stringRepresentation the input string
+     * @return the ViewableDataStructure object
+     */
     @Override
     public VisualizedQueue deserialize(String stringRepresentation) {
         return null;

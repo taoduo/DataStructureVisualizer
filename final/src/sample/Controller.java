@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public class Controller {
-    private final static String CONF_PATH = "/Users/duotao/courses/cs257/cs257MyRepo/final/dataStructureList.txt";
+    private final static String CONF_PATH = "dataStructureList.txt";
     private final static int RANDOM_DATA_SIZE = 10;
     private final static int RANDOM_DATA_RANGE = 20;
     @FXML
@@ -105,9 +105,14 @@ public class Controller {
         String selected = selector.getValue().toString();
         assert (this.nameClassMap.containsKey(selected));
         Class curClass = this.nameClassMap.get(selected);
+
         this.visualizedDataStructure = (VisualizedDataStructure) (curClass.getConstructor(Label.class).newInstance(this.outputLabel));
+
         // add the controls
         List<ViewableDataStructure.ControlWrapper> controlList = this.visualizedDataStructure.getControls();
+        //added this code to clear before drawing new buttons.
+        buttonVBox.getChildren().clear();
+        textFieldVBox.getChildren().clear();
         for (ViewableDataStructure.ControlWrapper controlWrapper : controlList) {
             buttonVBox.getChildren().add(controlWrapper.button);
             controlWrapper.button.setOnAction(controlWrapper.handler);

@@ -79,7 +79,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         textField2.setDisable(true);
         EventHandler<ActionEvent> eventHandler2 = event -> {
             if (this.stack.isEmpty()) {
-                outputLabel.setText("EmtpyStackException");
+                outputLabel.setText("Empty");
                 return;
             }
             outputLabel.setText(Integer.toString(stack.pop()));
@@ -93,7 +93,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         textField3.setDisable(true);
         EventHandler<ActionEvent> eventHandler3 = event -> {
             if (this.stack.isEmpty()) {
-                outputLabel.setText("EmtpyStackException");
+                outputLabel.setText("Empty");
                 return;
             }
             outputLabel.setText(Integer.toString(stack.peek()));
