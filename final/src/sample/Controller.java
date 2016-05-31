@@ -39,7 +39,7 @@ public class Controller {
     @FXML
     private VBox textFieldVBox;
     @FXML
-    private Label outputLabel;
+    public Label outputLabel;
 
     private boolean initialized = false;
     private HashMap<String, Class> nameClassMap = new HashMap<String, Class>();
@@ -93,7 +93,7 @@ public class Controller {
      * Handles the selector selecting event
      * @throws Exception throws exception when contructor is not found, which should not happen
      */
-    public void onDataStructureSelected() throws Exception{
+    public void onDataStructureSelected() throws Exception {
         // for the first time of selection
         if (!this.initialized) {
             this.initialized = true;
@@ -105,7 +105,7 @@ public class Controller {
         String selected = selector.getValue().toString();
         assert (this.nameClassMap.containsKey(selected));
         Class curClass = this.nameClassMap.get(selected);
-        this.visualizedDataStructure = ((VisualizedDataStructure) curClass.newInstance());
+        this.visualizedDataStructure = (VisualizedDataStructure) (curClass.getConstructor(Label.class).newInstance(this.outputLabel));
         // add the controls
         List<ViewableDataStructure.ControlWrapper> controlList = this.visualizedDataStructure.getControls();
         for (ViewableDataStructure.ControlWrapper controlWrapper : controlList) {

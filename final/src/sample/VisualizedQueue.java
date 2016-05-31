@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 
 /**
  * The model class of Queue in MVC
@@ -16,7 +17,8 @@ public class VisualizedQueue extends VisualizedDataStructure {
     /**
      * Empty queue constructor
      */
-    public VisualizedQueue() {
+    public VisualizedQueue(Label label) {
+        super(label);
         this.queue = new ArrayDeque<>();
     }
 

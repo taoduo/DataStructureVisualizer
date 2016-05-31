@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,8 @@ public class VisualizedHeap extends VisualizedDataStructure {
     /**
      * Empty heap constructor
      */
-    public VisualizedHeap() {
+    public VisualizedHeap(Label label) {
+        super(label);
         this.heap = new PriorityQueue<Integer>();
     }
 

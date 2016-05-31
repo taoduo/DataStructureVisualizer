@@ -3,14 +3,17 @@ package sample;
 import java.util.List;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 
 /**
  * A class that wraps up the three interfaces and forms a parent class for all viewable data structure subclasses
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public abstract class VisualizedDataStructure implements ViewableDataStructure, RandomizableDataStructure, SerializableDataStructure<VisualizedDataStructure> {
-    protected String operationResult;
-
+    public Label outputLabel;
+    public VisualizedDataStructure(Label label) {
+        this.outputLabel = label;
+    }
     @Override
     abstract public void randomize(int size, int range);
 
