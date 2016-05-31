@@ -87,7 +87,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         ControlWrapper controlWrapper2 = new ControlWrapper(textField2, button2, eventHandler2);
         list.add(controlWrapper2);
 
-        // add the pop operation
+        // add the peek operation
         Button button3 = new Button("Peek");
         TextField textField3 = new TextField();
         textField3.setDisable(true);
