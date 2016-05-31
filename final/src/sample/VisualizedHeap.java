@@ -118,6 +118,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
         return list;
     }
 
+    @Override
     public String serialize() {
         /*
         String result;

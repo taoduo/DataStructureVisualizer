@@ -110,6 +110,7 @@ public class VisualizedStack extends VisualizedDataStructure {
      * Serialize the stack into a string
      * @return the serialization output as a string
      */
+    @Override
     public String serialize() {
         String result = "";
         return result;
