@@ -119,7 +119,7 @@ public class Controller {
             textFieldVBox.getChildren().add(controlWrapper.textField);
         }
         // clear up the outputs
-        this.refreshOutput("");
+        this.refreshOutput("Output");
     }
 
     /**

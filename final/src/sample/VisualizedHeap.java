@@ -69,12 +69,12 @@ public class VisualizedHeap extends VisualizedDataStructure {
         List<ControlWrapper> list = new ArrayList<ControlWrapper>();
         //add the offer operation
         Button button1 = new Button("add");
+        button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 heap.offer(Integer.parseInt(textField1.getText()));
                 outputLabel.setText(textField1.getText());
-                System.out.println(outputLabel);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
@@ -88,6 +88,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
         // add the poll operation
         Button button2 = new Button("Poll");
+        button2.setPrefWidth(1000);
         TextField textField2 = new TextField();
         textField2.setDisable(true);
         EventHandler<ActionEvent> eventHandler2 = event -> {
@@ -102,6 +103,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
         // add the peek operation
         Button button3 = new Button("Peek");
+        button3.setPrefWidth(1000);
         TextField textField3 = new TextField();
         textField3.setDisable(true);
         EventHandler<ActionEvent> eventHandler3 = event -> {
@@ -114,15 +116,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
         ControlWrapper controlWrapper3 = new ControlWrapper(textField3, button3, eventHandler3);
         list.add(controlWrapper3);
         return list;
-    }
-
-    /**
-     * Helper method to check if a string represents an integer
-     * @param s the string to be checked
-     * @return true if it represents an integer, false if not
-     */
-    private boolean isInt(String s) {
-        return s.matches("[-+]?\\d+");
     }
 
     public String serialize() {
@@ -156,42 +149,5 @@ public class VisualizedHeap extends VisualizedDataStructure {
         }
         */
         return null;
-    }
-
-    public static void main(String[] args) {
-        //Testing serialize and deserialize
-        /*
-        Object[] arrayForm;
-        PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
-        heap.add(1);
-        heap.add(2);
-        heap.add(3);
-        arrayForm = heap.toArray();
-        String stringArray = Arrays.toString(arrayForm);
-        String result = stringArray.substring(1,stringArray.length()-1);
-        System.out.println("The result is: " + result);
-
-        String[] items = result.replaceAll(" ", "").split(",");
-        System.out.println("The first item is: "+ items[0] + ". The second item is: " + items[1] + ". The third item is: " + items[2]);
-
-        Integer[] intArray = new Integer[items.length];
-        Integer item;
-        for (int i = 0; i < items.length; i++) {
-            try {
-                item = new Integer(items[i]);
-                intArray[i] = item;
-            } catch (NumberFormatException nfe) {};
-        }
-        System.out.println("The first int is: "+ intArray[0] + ". The second int is: " + intArray[1] + ". The third int is: " + intArray[2]);
-
-        PriorityQueue<Integer> newHeap = new PriorityQueue<Integer>();
-        for (int j = 0; j < intArray.length; j++) {
-            newHeap.add(intArray[j]);
-        }
-        Object[] newArrayForm;
-        newArrayForm = newHeap.toArray();
-        System.out.println(stringArray + " should be the same as " + Arrays.toString(newArrayForm));
-        */
-
     }
 }
