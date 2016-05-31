@@ -14,6 +14,16 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
     public VisualizedDataStructure(Label label) {
         this.outputLabel = label;
     }
+
+    /**
+     * Helper method to check if a string represents an integer
+     * @param s the string to be checked
+     * @return true if it represents an integer, false if not
+     */
+    protected boolean isInt(String s) {
+        return s.matches("[-+]?\\d+");
+    }
+
     @Override
     abstract public void randomize(int size, int range);
 

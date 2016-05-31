@@ -58,6 +58,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         List<ControlWrapper> list = new ArrayList<ControlWrapper>();
         // add the push operation
         Button button1 = new Button("Push");
+        button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
@@ -75,6 +76,7 @@ public class VisualizedStack extends VisualizedDataStructure {
 
         // add the pop operation
         Button button2 = new Button("Pop");
+        button2.setPrefWidth(1000);
         TextField textField2 = new TextField();
         textField2.setDisable(true);
         EventHandler<ActionEvent> eventHandler2 = event -> {
@@ -89,6 +91,7 @@ public class VisualizedStack extends VisualizedDataStructure {
 
         // add the pop operation
         Button button3 = new Button("Peek");
+        button3.setPrefWidth(1000);
         TextField textField3 = new TextField();
         textField3.setDisable(true);
         EventHandler<ActionEvent> eventHandler3 = event -> {
@@ -103,14 +106,6 @@ public class VisualizedStack extends VisualizedDataStructure {
         return list;
     }
 
-    /**
-     * Helper method to check if a string represents an integer
-     * @param s the string to be checked
-     * @return true if it represents an integer, false if not
-     */
-    private boolean isInt(String s) {
-        return s.matches("[-+]?\\d+");
-    }
     /**
      * Serialize the stack into a string
      * @return the serialization output as a string
