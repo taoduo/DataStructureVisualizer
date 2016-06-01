@@ -44,4 +44,6 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
 
     @Override
     abstract public List<ControlWrapper> getControls();
+
+    abstract public boolean isEmpty();
 }

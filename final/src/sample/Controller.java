@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -55,6 +58,27 @@ public class Controller {
             System.out.println("Error reading configuration file:" + CONF_PATH);
             System.exit(0);
         }
+    }
+
+    private boolean alertReinitialize() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reinitialization Confirmation");
+        alert.setHeaderText("Data structure clear");
+        alert.setContentText("This operation will clear up the current entrance. Are you sure?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void alertError(String input, String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Input Error");
+        alert.setHeaderText(msg);
+        alert.setContentText(input);
+        alert.showAndWait();
     }
 
     /**
@@ -126,8 +150,14 @@ public class Controller {
      * Initialize the data structure with random data
      */
     public void onRandomButtonClick() {
-        this.visualizedDataStructure.randomize(RANDOM_DATA_SIZE, RANDOM_DATA_RANGE);
-        this.refreshOutput("");
+        boolean confirmResult = true;
+        if (!this.visualizedDataStructure.isEmpty()) {
+            confirmResult = this.alertReinitialize();
+        }
+        if (confirmResult) {
+            this.visualizedDataStructure.randomize(RANDOM_DATA_SIZE, RANDOM_DATA_RANGE);
+            this.refreshOutput("Output");
+        }
     }
 
     /**
@@ -139,11 +169,7 @@ public class Controller {
         String inputString = dataField.getText();
         VisualizedDataStructure result = this.visualizedDataStructure.deserialize(inputString);
         if (result == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Input Error");
-            alert.setHeaderText("The input can not be deserialized");
-            alert.setContentText(inputString);
-            alert.showAndWait();
+            alertError(inputString, "This input can not be initialized");
             return;
         }
         this.visualizedDataStructure = result;

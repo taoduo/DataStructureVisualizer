@@ -34,7 +34,11 @@ public class VisualizedStack extends VisualizedDataStructure {
      */
     @Override
     public void randomize(int size, int range) {
-
+        this.stack.clear();
+        for (int i = 0; i < size; i++) {
+            int rand = (int) (Math.random() * range + 1);
+            this.stack.push(rand);
+        }
     }
 
     /**
@@ -104,6 +108,11 @@ public class VisualizedStack extends VisualizedDataStructure {
         ControlWrapper controlWrapper3 = new ControlWrapper(textField3, button3, eventHandler3);
         list.add(controlWrapper3);
         return list;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.stack.isEmpty();
     }
 
     /**

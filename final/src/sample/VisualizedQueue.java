@@ -1,6 +1,11 @@
 package sample;
 
-import java.util.*;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Queue;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -110,7 +115,10 @@ public class VisualizedQueue extends VisualizedDataStructure {
         return list;
     }
 
-
+    @Override
+    public boolean isEmpty() {
+        return this.queue.isEmpty();
+    }
 
 
     /**

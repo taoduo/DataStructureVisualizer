@@ -119,6 +119,11 @@ public class VisualizedHeap extends VisualizedDataStructure {
     }
 
     @Override
+    public boolean isEmpty() {
+        return this.heap.isEmpty();
+    }
+
+    @Override
     public String serialize() {
         /*
         String result;
