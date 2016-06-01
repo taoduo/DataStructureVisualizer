@@ -1,6 +1,5 @@
 package sample;
 
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -118,11 +117,19 @@ public class VisualizedHeap extends VisualizedDataStructure {
         return list;
     }
 
+    /**
+     * Tells if the heap is empty
+     * @return true if it is empty, false if not
+     */
     @Override
     public boolean isEmpty() {
         return this.heap.isEmpty();
     }
 
+    /**
+     * Turns the heap into the string
+     * @return the string result of serialization
+     */
     @Override
     public String serialize() {
         /*
@@ -136,6 +143,12 @@ public class VisualizedHeap extends VisualizedDataStructure {
         return "";
     }
 
+    /**
+     * Parse a string to get the heap
+     * Returns null if the string is misformatted
+     * @param stringRepresentation the input string
+     * @return the VisualizedHeap object
+     */
     @Override
     public VisualizedHeap deserialize(String stringRepresentation) {
         /*

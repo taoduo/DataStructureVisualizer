@@ -60,6 +60,10 @@ public class Controller {
         }
     }
 
+    /**
+     * when the data structure is cleared, pop up the message box
+     * @return true if the user confirms it, false if the user cancels it
+     */
     private boolean alertReinitialize() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Reinitialization Confirmation");
@@ -73,6 +77,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Pop up an error alert box for input error
+     * @param input the input with error
+     * @param msg the message to show the user
+     */
     private void alertError(String input, String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Input Error");

@@ -24,6 +24,11 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
         return s.matches("[-+]?\\d+");
     }
 
+    /**
+     * Reset the data structure with random numbers
+     * @param size The size of the data structure
+     * @param range The range of random numbers
+     */
     @Override
     abstract public void randomize(int size, int range);
 
@@ -39,11 +44,23 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
     @Override
     abstract public VisualizedDataStructure deserialize(String inputString);
 
+    /**
+     * Return the nodes to show to the user
+     * @return a list of nodes in the display board
+     */
     @Override
     abstract public List<Node> getNodes();
 
+    /**
+     * Return the control components
+     * @return a list of ControlWrappers, which are packs of a button, an input and a handler
+     */
     @Override
     abstract public List<ControlWrapper> getControls();
 
+    /**
+     * Tells if this data structure is empty
+     * @return true if it is, false if not
+     */
     abstract public boolean isEmpty();
 }

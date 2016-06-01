@@ -115,11 +115,14 @@ public class VisualizedQueue extends VisualizedDataStructure {
         return list;
     }
 
+    /**
+     * Tells if the queue is empty
+     * @return true if it is empty, false if not
+     */
     @Override
     public boolean isEmpty() {
         return this.queue.isEmpty();
     }
-
 
     /**
      * Serialize the stack into a string
@@ -130,6 +133,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
         String result = "";
         return result;
     }
+
     /**
      * Deserialize the string and get the queue back
      * @param stringRepresentation the input string

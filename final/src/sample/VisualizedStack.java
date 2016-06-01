@@ -110,6 +110,10 @@ public class VisualizedStack extends VisualizedDataStructure {
         return list;
     }
 
+    /**
+     * Tells if the stack is empty
+     * @return true if it is empty, false if not
+     */
     @Override
     public boolean isEmpty() {
         return this.stack.isEmpty();
