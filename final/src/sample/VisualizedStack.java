@@ -82,7 +82,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         Button button2 = new Button("Pop");
         button2.setPrefWidth(1000);
         TextField textField2 = new TextField();
-        textField2.setDisable(true);
+        textField2.setVisible(false);
         EventHandler<ActionEvent> eventHandler2 = event -> {
             if (this.stack.isEmpty()) {
                 outputLabel.setText("Empty");
@@ -97,7 +97,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         Button button3 = new Button("Peek");
         button3.setPrefWidth(1000);
         TextField textField3 = new TextField();
-        textField3.setDisable(true);
+        textField3.setVisible(false);
         EventHandler<ActionEvent> eventHandler3 = event -> {
             if (this.stack.isEmpty()) {
                 outputLabel.setText("Empty");
