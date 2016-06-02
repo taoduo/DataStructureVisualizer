@@ -148,9 +148,8 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Parse a string to get the heap
-     * Returns null if the string is misformatted
      * @param stringRepresentation the input string
-     * @return the VisualizedHeap object
+     * @return true if the input is valid, false if not
      */
     @Override
     public boolean deserialize(String stringRepresentation) {

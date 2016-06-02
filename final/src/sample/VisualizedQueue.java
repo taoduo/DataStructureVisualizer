@@ -136,7 +136,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
     /**
      * Deserialize the string and get the queue back
      * @param stringRepresentation the input string
-     * @return the ViewableDataStructure object
+     * @return true if the input is valid, false if not
      */
     @Override
     public boolean deserialize(String stringRepresentation) {
