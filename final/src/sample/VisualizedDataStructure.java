@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
  * A class that wraps up the three interfaces and forms a parent class for all viewable data structure subclasses
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
-public abstract class VisualizedDataStructure implements ViewableDataStructure, RandomizableDataStructure, SerializableDataStructure<VisualizedDataStructure> {
+public abstract class VisualizedDataStructure implements ViewableDataStructure, RandomizableDataStructure, SerializableDataStructure {
     public Controller controller;
     public VisualizedDataStructure(Controller controller) {
         this.controller = controller;
@@ -42,7 +42,7 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
      * @return The data structure
      */
     @Override
-    abstract public VisualizedDataStructure deserialize(String inputString);
+    abstract public boolean deserialize(String inputString);
 
     /**
      * Return the nodes to show to the user

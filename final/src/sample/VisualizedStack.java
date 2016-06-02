@@ -133,13 +133,31 @@ public class VisualizedStack extends VisualizedDataStructure {
     }
 
     /**
-     * Deserialize the string and get the stack back
+     * Deserialize the string to initialize the stack
      * Returns null if the input is misformatted
+     * Format: numbers splitted by one or more spaces, tabs or new lines
+     * Number on the right is on the top of the stack
+     * Example: 5 10    15
+     * 15 will be on the top of the stack
      * @param stringRepresentation the input string
-     * @return the ViewableDataStructure object
+     * @return if the input is viable
      */
     @Override
-    public VisualizedStack deserialize(String stringRepresentation) {
-        return null;
+    public boolean deserialize(String stringRepresentation) {
+        if (stringRepresentation.isEmpty()) {
+            this.stack.clear();
+            return true;
+        }
+        String[] arr = stringRepresentation.split("\\s+");
+        Stack<Integer> tempStack = new Stack<>();
+        for (String str : arr) {
+            if (this.isInt(str)) {
+                tempStack.push(Integer.parseInt(str));
+            } else {
+                return false;
+            }
+        }
+        this.stack = tempStack;
+        return true;
     }
 }

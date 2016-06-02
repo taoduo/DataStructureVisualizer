@@ -153,7 +153,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
      * @return the VisualizedHeap object
      */
     @Override
-    public VisualizedHeap deserialize(String stringRepresentation) {
+    public boolean deserialize(String stringRepresentation) {
         /*
         String[] stringArray = stringRepresentation.replaceAll(" ", "").split(",");
         Integer[] intArray = new Integer[stringArray.length];
@@ -170,6 +170,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
             newHeap.add(intArray[j]);
         }
         */
-        return null;
+        return false;
     }
 }

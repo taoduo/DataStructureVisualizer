@@ -139,7 +139,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
      * @return the ViewableDataStructure object
      */
     @Override
-    public VisualizedQueue deserialize(String stringRepresentation) {
-        return null;
+    public boolean deserialize(String stringRepresentation) {
+        return false;
     }
 }

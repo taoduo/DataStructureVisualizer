@@ -4,7 +4,7 @@ package sample;
  * Converts the data into string and vice versa
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
-public interface SerializableDataStructure<T> {
+public interface SerializableDataStructure {
     /**
      * Returns the serialized data as string
      * @return the string that represents the data
@@ -17,5 +17,5 @@ public interface SerializableDataStructure<T> {
      * @param inputString the string to be parsed
      * @return The data structure
      */
-    T deserialize(String inputString);
+    boolean deserialize(String inputString);
 }

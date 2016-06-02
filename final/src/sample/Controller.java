@@ -175,13 +175,15 @@ public class Controller {
      * If the input is illegal, pops up a message and does nothing
      */
     public void onEnterButtonClick() {
-        String inputString = dataField.getText();
-        VisualizedDataStructure result = this.visualizedDataStructure.deserialize(inputString);
-        if (result == null) {
-            alertError(inputString, "This input can not be initialized");
-            return;
+        if (this.visualizedDataStructure.isEmpty() ||
+                (!this.visualizedDataStructure.isEmpty() && this.alertReinitialize())) {
+            String inputString = dataField.getText();
+            boolean viable = this.visualizedDataStructure.deserialize(inputString);
+            if (!viable) {
+                alertError(inputString, "Invalid Input");
+                return;
+            }
+            this.refreshOutput("");
         }
-        this.visualizedDataStructure = result;
-        this.refreshOutput("");
     }
 }
