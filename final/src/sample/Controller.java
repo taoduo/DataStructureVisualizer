@@ -26,21 +26,21 @@ public class Controller {
     private final static int RANDOM_DATA_SIZE = 10;
     private final static int RANDOM_DATA_RANGE = 20;
     @FXML
-    private ComboBox selector;
+    public ComboBox selector;
     @FXML
-    private Button randomButton;
+    public Button randomButton;
     @FXML
-    private TextArea dataField;
+    public TextArea dataField;
     @FXML
-    private Button enterButton;
+    public Button enterButton;
     @FXML
-    private AnchorPane displayBoard;
+    public AnchorPane displayBoard;
     @FXML
-    private Label serialTextBox;
+    public Label serialTextBox;
     @FXML
-    private VBox buttonVBox;
+    public VBox buttonVBox;
     @FXML
-    private VBox textFieldVBox;
+    public VBox textFieldVBox;
     @FXML
     public Label outputLabel;
 
