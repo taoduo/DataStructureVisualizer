@@ -36,7 +36,11 @@ public class VisualizedHeap extends VisualizedDataStructure {
      */
     @Override
     public void randomize(int size, int range) {
-
+        this.heap.clear();
+        for (int i = 0; i < size; i++) {
+            int rand = (int) (Math.random() * range + 1);
+            this.heap.offer(rand);
+        }
     }
 
 
