@@ -7,10 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 
 /**
@@ -135,15 +132,11 @@ public class VisualizedHeap extends VisualizedDataStructure {
      */
     @Override
     public String serialize() {
-        /*
-        String result;
-        Object[] arrayForm;
-        arrayForm = this.heap.toArray();
-        result = Arrays.toString(arrayForm);
-        System.out.println(result);
+        String result = "";
+        for (Integer i : this.heap) {
+            result = result + " " + i;
+        }
         return result;
-        */
-        return "";
     }
 
     /**
@@ -153,22 +146,20 @@ public class VisualizedHeap extends VisualizedDataStructure {
      */
     @Override
     public boolean deserialize(String stringRepresentation) {
-        /*
-        String[] stringArray = stringRepresentation.replaceAll(" ", "").split(",");
-        Integer[] intArray = new Integer[stringArray.length];
-        Integer item;
-        for (int i = 0; i < stringArray.length; i++) {
-            try {
-                item = new Integer(stringArray[i]);
-                intArray[i] = item;
-            } catch (NumberFormatException nfe) {};
+        if (stringRepresentation.isEmpty()) {
+            this.heap.clear();
+            return true;
         }
-
-        PriorityQueue<Integer> newHeap = new PriorityQueue<Integer>();
-        for (int j = 0; j < intArray.length; j++) {
-            newHeap.add(intArray[j]);
+        String[] arr = stringRepresentation.split("\\s+");
+        PriorityQueue<Integer> tempHeap = new PriorityQueue<Integer>();
+        for (String str : arr) {
+            if (this.isInt(str)) {
+                tempHeap.offer(Integer.parseInt(str));
+            } else {
+                return false;
+            }
         }
-        */
-        return false;
+        this.heap = tempHeap;
+        return true;
     }
 }
