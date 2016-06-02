@@ -85,7 +85,7 @@ public class VisualizedStack extends VisualizedDataStructure {
         textField2.setVisible(false);
         EventHandler<ActionEvent> eventHandler2 = event -> {
             if (this.stack.isEmpty()) {
-                this.controller.refreshOutput("Empty");
+                this.controller.outputLabel.setText("Empty");
                 return;
             }
             this.controller.refreshOutput(Integer.toString(stack.pop()));

@@ -70,7 +70,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 this.queue.offer(Integer.parseInt(textField1.getText()));
-                this.controller.outputLabel.setText(textField1.getText());
+                this.controller.refreshOutput(textField1.getText());
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
@@ -92,7 +92,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
                 this.controller.outputLabel.setText("Empty");
                 return;
             }
-            this.controller.outputLabel.setText(Integer.toString(this.queue.poll()));
+            this.controller.refreshOutput(Integer.toString(this.queue.poll()));
         };
         ControlWrapper controlWrapper2 = new ControlWrapper(textField2, button2, eventHandler2);
         list.add(controlWrapper2);
