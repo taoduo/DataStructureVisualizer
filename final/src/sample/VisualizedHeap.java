@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -24,8 +23,8 @@ public class VisualizedHeap extends VisualizedDataStructure {
     /**
      * Empty heap constructor
      */
-    public VisualizedHeap(Label label) {
-        super(label);
+    public VisualizedHeap(Controller controller) {
+        super(controller);
         this.heap = new PriorityQueue<Integer>();
     }
 
@@ -77,7 +76,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 heap.offer(Integer.parseInt(textField1.getText()));
-                outputLabel.setText(textField1.getText());
+                this.controller.outputLabel.setText(textField1.getText());
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
@@ -96,10 +95,10 @@ public class VisualizedHeap extends VisualizedDataStructure {
         textField2.setVisible(false);
         EventHandler<ActionEvent> eventHandler2 = event -> {
             if (this.heap.isEmpty()) {
-                outputLabel.setText("Empty");
+                this.controller.outputLabel.setText("Empty");
                 return;
             }
-            outputLabel.setText(Integer.toString(heap.poll()));
+            this.controller.outputLabel.setText(Integer.toString(heap.poll()));
         };
         ControlWrapper controlWrapper2 = new ControlWrapper(textField2, button2, eventHandler2);
         list.add(controlWrapper2);
@@ -111,10 +110,10 @@ public class VisualizedHeap extends VisualizedDataStructure {
         textField3.setVisible(false);
         EventHandler<ActionEvent> eventHandler3 = event -> {
             if (this.heap.isEmpty()) {
-                outputLabel.setText("Empty");
+                this.controller.outputLabel.setText("Empty");
                 return;
             }
-            outputLabel.setText(Integer.toString(heap.peek()));
+            this.controller.outputLabel.setText(Integer.toString(heap.peek()));
         };
         ControlWrapper controlWrapper3 = new ControlWrapper(textField3, button3, eventHandler3);
         list.add(controlWrapper3);

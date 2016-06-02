@@ -10,9 +10,9 @@ import javafx.scene.control.Label;
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public abstract class VisualizedDataStructure implements ViewableDataStructure, RandomizableDataStructure, SerializableDataStructure<VisualizedDataStructure> {
-    public Label outputLabel;
-    public VisualizedDataStructure(Label label) {
-        this.outputLabel = label;
+    public Controller controller;
+    public VisualizedDataStructure(Controller controller) {
+        this.controller = controller;
     }
 
     /**

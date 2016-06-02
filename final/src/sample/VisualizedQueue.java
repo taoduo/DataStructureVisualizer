@@ -12,7 +12,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -24,9 +23,9 @@ public class VisualizedQueue extends VisualizedDataStructure {
     /**
      * Empty queue constructor
      */
-    public VisualizedQueue(Label label) {
-        super(label);
-        this.queue = new ArrayDeque<Integer>();
+    public VisualizedQueue(Controller controller) {
+        super(controller);
+        this.queue = new ArrayDeque<>();
     }
 
     /**
@@ -71,7 +70,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 this.queue.offer(Integer.parseInt(textField1.getText()));
-                outputLabel.setText(textField1.getText());
+                this.controller.outputLabel.setText(textField1.getText());
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
@@ -90,10 +89,10 @@ public class VisualizedQueue extends VisualizedDataStructure {
         textField2.setVisible(false);
         EventHandler<ActionEvent> eventHandler2 = event -> {
             if (this.queue.isEmpty()) {
-                outputLabel.setText("Empty");
+                this.controller.outputLabel.setText("Empty");
                 return;
             }
-            outputLabel.setText(Integer.toString(this.queue.poll()));
+            this.controller.outputLabel.setText(Integer.toString(this.queue.poll()));
         };
         ControlWrapper controlWrapper2 = new ControlWrapper(textField2, button2, eventHandler2);
         list.add(controlWrapper2);
@@ -105,10 +104,10 @@ public class VisualizedQueue extends VisualizedDataStructure {
         textField3.setVisible(false);
         EventHandler<ActionEvent> eventHandler3 = event -> {
             if (this.queue.isEmpty()) {
-                outputLabel.setText("Empty");
+                this.controller.outputLabel.setText("Empty");
                 return;
             }
-            outputLabel.setText(Integer.toString(this.queue.peek()));
+            this.controller.outputLabel.setText(Integer.toString(this.queue.peek()));
         };
         ControlWrapper controlWrapper3 = new ControlWrapper(textField3, button3, eventHandler3);
         list.add(controlWrapper3);

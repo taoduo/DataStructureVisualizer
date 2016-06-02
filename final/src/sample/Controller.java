@@ -94,7 +94,7 @@ public class Controller {
      * Refresh the output (displayBoard, outputLabel and serialTextBox) with new data
      * @param outputOfOperation the text to put into the operation result text box
      */
-    private void refreshOutput(String outputOfOperation) {
+    public void refreshOutput(String outputOfOperation) {
         List<Node> listOfNodes = this.visualizedDataStructure.getNodes();
         displayBoard.getChildren().clear();
         for (Node node : listOfNodes) {
@@ -139,7 +139,7 @@ public class Controller {
         assert (this.nameClassMap.containsKey(selected));
         Class curClass = this.nameClassMap.get(selected);
 
-        this.visualizedDataStructure = (VisualizedDataStructure) (curClass.getConstructor(Label.class).newInstance(this.outputLabel));
+        this.visualizedDataStructure = (VisualizedDataStructure) (curClass.getConstructor(Controller.class).newInstance(this));
 
         // add the controls
         List<ViewableDataStructure.ControlWrapper> controlList = this.visualizedDataStructure.getControls();
