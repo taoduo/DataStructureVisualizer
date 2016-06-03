@@ -31,6 +31,10 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
     @Override
     abstract public void randomize(int size, int min, int max);
 
+    /**
+     * Serialize the data structure into a string
+     * @return the result string
+     */
     @Override
     abstract public String serialize();
 

@@ -92,7 +92,6 @@ public class VisualizedStack extends VisualizedDataStructure {
         while(!temp.isEmpty()) {
             this.stack.push(temp.pop());
         }
-        //Collections.reverse(list);
         return list;
     }
 
