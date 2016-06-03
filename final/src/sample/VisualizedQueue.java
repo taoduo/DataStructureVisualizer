@@ -31,10 +31,11 @@ public class VisualizedQueue extends VisualizedDataStructure {
     /**
      * Reset the queue with random numbers
      * @param size The size of the queue
-     * @param range The range of random numbers
+     * @param min The min of random numbers
+     * @param max The max of random numbers
      */
     @Override
-    public void randomize(int size, int range) {
+    public void randomize(int size, int min, int max) {
 
     }
 
@@ -71,6 +72,7 @@ public class VisualizedQueue extends VisualizedDataStructure {
             if (this.isInt(textField1.getText())) {
                 this.queue.offer(Integer.parseInt(textField1.getText()));
                 this.controller.refreshOutput(textField1.getText());
+                textField1.requestFocus();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");

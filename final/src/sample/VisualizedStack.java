@@ -25,6 +25,8 @@ public class VisualizedStack extends VisualizedDataStructure {
     private static final int X_ADJUSTMENT = 5;
     private static final int Y_ADJUSTMENT = 10;
     private static final int CEILING_GAP = 5;
+    private static final int GROUND_HEIGHT = 10;
+    private static final int GROUND_WIDTH = 300;
     /**
      * Empty stack constructor
      */
@@ -36,13 +38,14 @@ public class VisualizedStack extends VisualizedDataStructure {
     /**
      * Initialize the stack with random numbers
      * @param size the size of the stack
-     * @param range the range of the random numbers
+     * @param min the min of the random numbers
+     * @param max the max of the random numbers
      */
     @Override
-    public void randomize(int size, int range) {
+    public void randomize(int size, int min, int max) {
         this.stack.clear();
         for (int i = 0; i < size; i++) {
-            int rand = (int) (Math.random() * range + 1);
+            int rand = (int) (Math.random() * (max - min + 1) + min);
             this.stack.push(rand);
         }
     }
@@ -63,18 +66,32 @@ public class VisualizedStack extends VisualizedDataStructure {
             rectangle.setX((controller.displayBoard.getWidth() - rectangle.getWidth()) / 2);
             rectangle.setY(CEILING_GAP + count * rectangle.getHeight());
             rectangle.setFill(Color.WHITE);
+            if (count == 0) {
+                rectangle.setFill(Color.LIGHTGREEN);
+            }
             rectangle.setStroke(Color.BLACK);
-            Label label = new Label(i.toString());
+            Label label;
+            if (count == 0) {
+                label = new Label(i.toString() + " (top)");
+            } else {
+                label = new Label(i.toString());
+
+            }
             label.setLayoutX(controller.displayBoard.getWidth() / 2 - X_ADJUSTMENT);
             label.setLayoutY(rectangle.getY() + rectangle.getHeight() / 2 - Y_ADJUSTMENT);
             list.add(rectangle);
             list.add(label);
+            if (this.stack.isEmpty()) {
+                Rectangle ground = new Rectangle(0, rectangle.getY() + rectangle.getHeight(),
+                        GROUND_WIDTH, GROUND_HEIGHT);
+                ground.setFill(Color.GRAY);
+                list.add(ground);
+            }
             count++;
         }
         while(!temp.isEmpty()) {
             this.stack.push(temp.pop());
         }
-        //Collections.reverse(list);
         return list;
     }
 
@@ -93,6 +110,7 @@ public class VisualizedStack extends VisualizedDataStructure {
             if (this.isInt(textField1.getText())) {
                 this.controller.refreshOutput(Integer.toString(
                         stack.push(Integer.parseInt(textField1.getText()))));
+                textField1.requestFocus();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
