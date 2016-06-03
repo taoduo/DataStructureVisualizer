@@ -181,8 +181,6 @@ public class VisualizedStack extends VisualizedDataStructure {
      * Returns null if the input is misformatted
      * Format: numbers splitted by one or more spaces, tabs or new lines
      * Number on the right is on the top of the stack
-     * Example: 5 10    15
-     * 15 will be on the top of the stack
      * @param stringRepresentation the input string
      * @return if the input is viable
      */

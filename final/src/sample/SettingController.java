@@ -50,9 +50,6 @@ public class SettingController {
         return true;
     }
 
-    /**
-     * Initialize with the current settings
-     */
     @FXML
     public void initialize() {
         this.randomMin.setText(Integer.toString(Controller.getRandomDataMin()));
@@ -68,8 +65,7 @@ public class SettingController {
 
     /**
      * Check if the inputs are valid.
-     * If valid, save the settings and close.
-     * If not, pop up a error message
+     * If valid, save the settings and close. If not, pop up a error message
      * @param e the click event
      */
     @FXML

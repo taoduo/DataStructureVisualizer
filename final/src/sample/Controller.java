@@ -79,9 +79,6 @@ public class Controller {
     public static void setRandomDataMax(int randomDataMax) {
         RANDOM_DATA_MAX = randomDataMax;
     }
-    /**
-     * The method to initialize the application
-     */
     @FXML
     public void initialize() {
         try {
@@ -93,7 +90,7 @@ public class Controller {
     }
 
     /**
-     * when the data structure is cleared, pop up the message box
+     * When the data structure is cleared, pop up the message box
      * @return true if the user confirms it, false if the user cancels it
      */
     private boolean alertReinitialize() {
