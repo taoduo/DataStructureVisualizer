@@ -5,11 +5,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -18,6 +20,11 @@ import java.util.Stack;
  */
 public class VisualizedStack extends VisualizedDataStructure {
     private Stack<Integer> stack;
+    private static final int RECTANGLE_WIDTH = 100;
+    private static final int RECTANGLE_HEIGHT = 30;
+    private static final int X_ADJUSTMENT = 5;
+    private static final int Y_ADJUSTMENT = 10;
+    private static final int CEILING_GAP = 5;
     /**
      * Empty stack constructor
      */
@@ -47,8 +54,27 @@ public class VisualizedStack extends VisualizedDataStructure {
     @Override
     public List<Node> getNodes() {
         List<Node> list = new ArrayList<>();
-        Queue<Integer> queue;
-
+        int count = 0;
+        Stack<Integer> temp = new Stack<>();
+        while (!this.stack.isEmpty()) {
+            Integer i = this.stack.pop();
+            temp.push(i);
+            Rectangle rectangle = new Rectangle(RECTANGLE_WIDTH, RECTANGLE_HEIGHT);
+            rectangle.setX((controller.displayBoard.getWidth() - rectangle.getWidth()) / 2);
+            rectangle.setY(CEILING_GAP + count * rectangle.getHeight());
+            rectangle.setFill(Color.WHITE);
+            rectangle.setStroke(Color.BLACK);
+            Label label = new Label(i.toString());
+            label.setLayoutX(controller.displayBoard.getWidth() / 2 - X_ADJUSTMENT);
+            label.setLayoutY(rectangle.getY() + rectangle.getHeight() / 2 - Y_ADJUSTMENT);
+            list.add(rectangle);
+            list.add(label);
+            count++;
+        }
+        while(!temp.isEmpty()) {
+            this.stack.push(temp.pop());
+        }
+        //Collections.reverse(list);
         return list;
     }
 
