@@ -2,12 +2,15 @@ package sample;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -17,6 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * The model class of Queue in MVC
@@ -24,8 +28,11 @@ import javafx.scene.layout.VBox;
  */
 public class Controller {
     private final static String CONF_PATH = "dataStructureList.txt";
-    private final static int RANDOM_DATA_SIZE = 10;
-    private final static int RANDOM_DATA_RANGE = 20;
+    private static int RANDOM_DATA_SIZE = 10;
+    private static int RANDOM_DATA_MIN = 0;
+    private static int RANDOM_DATA_MAX = 20;
+    private final static int RANDOM_SETTINGS_WINDOW_WIDTH = 390;
+    private final static int RANDOM_SETTINGS_WINDOW_HEIGHT = 175;
     @FXML
     public ComboBox selector;
     @FXML
@@ -49,9 +56,33 @@ public class Controller {
     private HashMap<String, Class> nameClassMap = new HashMap<String, Class>();
     private VisualizedDataStructure visualizedDataStructure = null;
 
+    public static int getRandomDataSize() {
+        return RANDOM_DATA_SIZE;
+    }
+
+    public static void setRandomDataSize(int randomDataSize) {
+        RANDOM_DATA_SIZE = randomDataSize;
+    }
+
+    public static int getRandomDataMin() {
+        return RANDOM_DATA_MIN;
+    }
+
+    public static void setRandomDataMin(int randomDataMin) {
+        RANDOM_DATA_MIN = randomDataMin;
+    }
+
+    public static int getRandomDataMax() {
+        return RANDOM_DATA_MAX;
+    }
+
+    public static void setRandomDataMax(int randomDataMax) {
+        RANDOM_DATA_MAX = randomDataMax;
+    }
     /**
      * The method to initialize the application
      */
+    @FXML
     public void initialize() {
         try {
             this.loadClassIntoMap(CONF_PATH);
@@ -127,6 +158,7 @@ public class Controller {
      * Handles the selector selecting event
      * @throws Exception throws exception when contructor is not found, which should not happen
      */
+    @FXML
     public void onDataStructureSelected() throws Exception {
         // for the first time of selection
         if (!this.initialized) {
@@ -159,13 +191,14 @@ public class Controller {
     /**
      * Initialize the data structure with random data
      */
+    @FXML
     public void onRandomButtonClick() {
         boolean confirmResult = true;
         if (!this.visualizedDataStructure.isEmpty()) {
             confirmResult = this.alertReinitialize();
         }
         if (confirmResult) {
-            this.visualizedDataStructure.randomize(RANDOM_DATA_SIZE, RANDOM_DATA_RANGE);
+            this.visualizedDataStructure.randomize(RANDOM_DATA_SIZE, RANDOM_DATA_MIN, RANDOM_DATA_MAX);
             this.refreshOutput("Output");
         }
     }
@@ -175,6 +208,7 @@ public class Controller {
      * Reads in the input in the textarea and use the result to initialize or reinitialize the data
      * If the input is illegal, pops up a message and does nothing
      */
+    @FXML
     public void onEnterButtonClick() {
         if (this.visualizedDataStructure.isEmpty() ||
                 (!this.visualizedDataStructure.isEmpty() && this.alertReinitialize())) {
@@ -186,5 +220,23 @@ public class Controller {
             }
             this.refreshOutput("");
         }
+    }
+
+    /**
+     * Handles the randomization settings button click event
+     * Opens the new window on click
+     * @throws IOException throws IOException when the fxml file is not found, should never happen
+     */
+    @FXML
+    public void onRandomSettingClick() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
+        Stage randomSettingStage = new Stage();
+        randomSettingStage.setTitle("Randomization Settings");
+        randomSettingStage.setScene(new Scene(
+                root, RANDOM_SETTINGS_WINDOW_WIDTH, RANDOM_SETTINGS_WINDOW_HEIGHT));
+        randomSettingStage.sizeToScene();
+        randomSettingStage.setResizable(false);
+        randomSettingStage.initOwner(this.selector.getScene().getWindow());
+        randomSettingStage.show();
     }
 }

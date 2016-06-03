@@ -18,22 +18,18 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
         this.BOARD_WIDTH = controller.displayBoard.getWidth();
     }
 
-    /**
-     * Helper method to check if a string represents an integer
-     * @param s the string to be checked
-     * @return true if it represents an integer, false if not
-     */
     protected boolean isInt(String s) {
         return s.matches("[-+]?\\d+");
     }
 
     /**
-     * Reset the data structure with random numbers
-     * @param size The size of the data structure
-     * @param range The range of random numbers
+     * Reset the data in the data structure to random numbers
+     * @param size the size of the data structure
+     * @param min the min of randomization
+     * @param max the max of randomization
      */
     @Override
-    abstract public void randomize(int size, int range);
+    abstract public void randomize(int size, int min, int max);
 
     @Override
     abstract public String serialize();

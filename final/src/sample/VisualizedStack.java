@@ -37,13 +37,14 @@ public class VisualizedStack extends VisualizedDataStructure {
     /**
      * Initialize the stack with random numbers
      * @param size the size of the stack
-     * @param range the range of the random numbers
+     * @param min the min of the random numbers
+     * @param max the max of the random numbers
      */
     @Override
-    public void randomize(int size, int range) {
+    public void randomize(int size, int min, int max) {
         this.stack.clear();
         for (int i = 0; i < size; i++) {
-            int rand = (int) (Math.random() * range + 1);
+            int rand = (int) (Math.random() * (max - min + 1) + min);
             this.stack.push(rand);
         }
     }
@@ -109,6 +110,7 @@ public class VisualizedStack extends VisualizedDataStructure {
             if (this.isInt(textField1.getText())) {
                 this.controller.refreshOutput(Integer.toString(
                         stack.push(Integer.parseInt(textField1.getText()))));
+                textField1.requestFocus();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");

@@ -9,7 +9,8 @@ public interface RandomizableDataStructure {
     /**
      * Randomize the data in the data structure
      * @param size the size of the data structure
-     * @param range the range of random numbers put into the data structure
+     * @param min the min of randomization
+     * @param max the max of randomization
      */
-    void randomize(int size, int range);
+    void randomize(int size, int min, int max);
 }

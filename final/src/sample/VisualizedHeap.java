@@ -28,13 +28,14 @@ public class VisualizedHeap extends VisualizedDataStructure {
     /**
      * Reset the heap with random numbers
      * @param size The size of the heap
-     * @param range The range of random numbers
+     * @param min The min of random numbers
+     * @param max The max of random numbers
      */
     @Override
-    public void randomize(int size, int range) {
+    public void randomize(int size, int min, int max) {
         this.heap.clear();
         for (int i = 0; i < size; i++) {
-            int rand = (int) (Math.random() * range + 1);
+            int rand = (int) (Math.random() * (max - min + 1) + min);
             this.heap.offer(rand);
         }
     }
@@ -74,6 +75,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
             if (this.isInt(textField1.getText())) {
                 heap.offer(Integer.parseInt(textField1.getText()));
                 this.controller.refreshOutput(textField1.getText());
+                textField1.requestFocus();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
