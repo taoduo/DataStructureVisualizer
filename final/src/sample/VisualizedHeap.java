@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Circle;
 
 import java.util.*;
 
@@ -51,6 +52,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
             return list;
         } else {
             for (Iterator<Integer> itr = this.heap.iterator(); itr.hasNext(); itr.next()){
+
                 //Should do something with value in queue later but this loop prints it for now
                 System.out.println(itr);
             }
