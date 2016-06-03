@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -36,7 +37,7 @@ public class Controller {
     @FXML
     public AnchorPane displayBoard;
     @FXML
-    public Label serialTextBox;
+    public TextField serialTextBox;
     @FXML
     public VBox buttonVBox;
     @FXML

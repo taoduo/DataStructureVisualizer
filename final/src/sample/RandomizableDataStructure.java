@@ -5,6 +5,7 @@ package sample;
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public interface RandomizableDataStructure {
+
     /**
      * Randomize the data in the data structure
      * @param size the size of the data structure

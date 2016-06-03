@@ -89,14 +89,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="serialTextBox" prefHeight="17.0" prefWidth="305.0" text="Serialized Data">
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
+            <TextField fx:id="serialTextBox" editable="false" />
             <ScrollPane prefHeight="206.0" prefWidth="288.0">
                <content>
                
