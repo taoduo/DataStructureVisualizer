@@ -56,7 +56,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
         } else {
             for (Iterator<Integer> itr = this.heap.iterator(); itr.hasNext(); itr.next()){
                 //Should do something with value in queue later but this loop prints it for now
-                System.out.println(itr);
+                //System.out.println(itr);
             }
         }
         return list;

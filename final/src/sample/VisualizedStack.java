@@ -26,6 +26,7 @@ public class VisualizedStack extends VisualizedDataStructure {
     private static final int Y_ADJUSTMENT = 10;
     private static final int CEILING_GAP = 5;
     private static final int GROUND_HEIGHT = 10;
+    private static final int GROUND_WIDTH = 300;
     /**
      * Empty stack constructor
      */
@@ -82,7 +83,8 @@ public class VisualizedStack extends VisualizedDataStructure {
             list.add(label);
             if (this.stack.isEmpty()) {
                 Rectangle ground = new Rectangle(0, rectangle.getY() + rectangle.getHeight(),
-                        controller.displayBoard.getWidth(), GROUND_HEIGHT);
+                        GROUND_WIDTH, GROUND_HEIGHT);
+                System.out.println(controller.displayBoard.getWidth());
                 ground.setFill(Color.GRAY);
                 list.add(ground);
             }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.collections.*?>
@@ -85,7 +86,7 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="serialTextBox" editable="false" />
-            <ScrollPane prefHeight="206.0" prefWidth="288.0">
+            <ScrollPane prefHeight="200.0" prefWidth="300.0">
                <content>
                
                      
