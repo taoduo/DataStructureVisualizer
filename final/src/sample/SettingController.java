@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  * Controller class for the randomization settings window
- *
+ * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public class SettingController {
     @FXML
@@ -33,6 +33,10 @@ public class SettingController {
         alert.showAndWait();
     }
 
+    /**
+     * Validate the inputs: range should be integers and size should be positive integers
+     * @return true if valid, false if not
+     */
     private boolean validateInputs() {
         if (!this.isInt(randomMax.getText())) {
             return false;
@@ -46,6 +50,9 @@ public class SettingController {
         return true;
     }
 
+    /**
+     * Initialize with the current settings
+     */
     @FXML
     public void initialize() {
         this.randomMin.setText(Integer.toString(Controller.getRandomDataMin()));
@@ -59,6 +66,12 @@ public class SettingController {
         stage.close();
     }
 
+    /**
+     * Check if the inputs are valid.
+     * If valid, save the settings and close.
+     * If not, pop up a error message
+     * @param e the click event
+     */
     @FXML
     public void onRandomSaveClick(Event e) {
         Stage stage = (Stage) ((Button) (e.getSource())).getScene().getWindow();
