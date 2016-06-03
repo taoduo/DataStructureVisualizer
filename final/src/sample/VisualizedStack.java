@@ -25,6 +25,7 @@ public class VisualizedStack extends VisualizedDataStructure {
     private static final int X_ADJUSTMENT = 5;
     private static final int Y_ADJUSTMENT = 10;
     private static final int CEILING_GAP = 5;
+    private static final int GROUND_HEIGHT = 10;
     /**
      * Empty stack constructor
      */
@@ -63,12 +64,27 @@ public class VisualizedStack extends VisualizedDataStructure {
             rectangle.setX((controller.displayBoard.getWidth() - rectangle.getWidth()) / 2);
             rectangle.setY(CEILING_GAP + count * rectangle.getHeight());
             rectangle.setFill(Color.WHITE);
+            if (count == 0) {
+                rectangle.setFill(Color.LIGHTGREEN);
+            }
             rectangle.setStroke(Color.BLACK);
-            Label label = new Label(i.toString());
+            Label label;
+            if (count == 0) {
+                label = new Label(i.toString() + " (top)");
+            } else {
+                label = new Label(i.toString());
+
+            }
             label.setLayoutX(controller.displayBoard.getWidth() / 2 - X_ADJUSTMENT);
             label.setLayoutY(rectangle.getY() + rectangle.getHeight() / 2 - Y_ADJUSTMENT);
             list.add(rectangle);
             list.add(label);
+            if (this.stack.isEmpty()) {
+                Rectangle ground = new Rectangle(0, rectangle.getY() + rectangle.getHeight(),
+                        controller.displayBoard.getWidth(), GROUND_HEIGHT);
+                ground.setFill(Color.GRAY);
+                list.add(ground);
+            }
             count++;
         }
         while(!temp.isEmpty()) {
