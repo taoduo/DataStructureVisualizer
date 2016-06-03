@@ -84,7 +84,6 @@ public class VisualizedStack extends VisualizedDataStructure {
             if (this.stack.isEmpty()) {
                 Rectangle ground = new Rectangle(0, rectangle.getY() + rectangle.getHeight(),
                         GROUND_WIDTH, GROUND_HEIGHT);
-                System.out.println(controller.displayBoard.getWidth());
                 ground.setFill(Color.GRAY);
                 list.add(ground);
             }
