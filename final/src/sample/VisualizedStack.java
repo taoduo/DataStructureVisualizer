@@ -49,8 +49,8 @@ public class VisualizedStack extends VisualizedDataStructure {
     public List<Node> getNodes() {
         List<Node> list = new ArrayList<>();
         Circle circle = new Circle();
-        circle.setCenterX(50);
-        circle.setCenterY(50);
+        circle.setCenterX(100);
+        circle.setCenterY(500);
         circle.setRadius(20);
         circle.setFill(Color.WHITE);
         list.add(circle);
