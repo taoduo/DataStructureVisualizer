@@ -10,8 +10,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
+import java.lang.Math;
 
 /**
  * The model class of Heap in MVC
@@ -19,6 +24,12 @@ import javafx.scene.control.TextField;
  */
 public class VisualizedHeap extends VisualizedDataStructure {
     private PriorityQueue<Integer> heap;
+    private static final int RECTANGLE_WIDTH = 30;
+    private static final int RECTANGLE_HEIGHT = 30;
+    private static final int X_ADJUSTMENT = 10;
+    private static final int Y_ADJUSTMENT = 6;
+    private static final int CEILING_GAP = 5;
+    private static final int GAP_BETWEEN_ROW = 10;
 
     /**
      * Empty heap constructor
@@ -51,13 +62,45 @@ public class VisualizedHeap extends VisualizedDataStructure {
     @Override
     public List<Node> getNodes() {
         List<Node> list = new ArrayList<>();
-        if (this.heap.isEmpty()) {
-            return list;
-        } else {
-            for (Iterator<Integer> itr = this.heap.iterator(); itr.hasNext(); itr.next()){
-                //Should do something with value in queue later but this loop prints it for now
-                //System.out.println(itr);
+        Object[] arrayOfInt;
+        arrayOfInt = this.heap.toArray();
+        int count = 1;
+        double logOfCount;
+        int intLogOfCount;
+        int countInRow = 0;
+        double x;
+        double y;
+        double lineEndX = 0;
+
+        for (Object item : arrayOfInt) {
+            Rectangle rectangle = new Rectangle(RECTANGLE_WIDTH, RECTANGLE_HEIGHT);
+            logOfCount = Math.log(count)/Math.log(2);
+            if (logOfCount%1 == 0) {
+                countInRow = 0;
             }
+            intLogOfCount = (int) logOfCount;
+            x = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
+            y = CEILING_GAP + intLogOfCount * (rectangle.getHeight() + GAP_BETWEEN_ROW);
+            rectangle.setX(x);
+            rectangle.setY(y);
+            rectangle.setFill(Color.WHITE);
+            rectangle.setStroke(Color.BLACK);
+            Label label = new Label(item.toString());
+            label.setLayoutX(x + X_ADJUSTMENT);
+            label.setLayoutY(y + Y_ADJUSTMENT);
+            if (count > 1) {
+                Line line = new Line();
+                line.setStartX(rectangle.getX() + rectangle.getWidth()/2);
+                line.setStartY(rectangle.getY());
+                lineEndX = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, (intLogOfCount-1)) + ((int) ((countInRow)/2) + 1) * rectangle.getWidth();
+                line.setEndX(lineEndX - rectangle.getWidth()/2);
+                line.setEndY(line.getStartY()-GAP_BETWEEN_ROW);
+                list.add(line);
+            }
+            list.add(rectangle);
+            list.add(label);
+            count++;
+            countInRow++;
         }
         return list;
 
