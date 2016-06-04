@@ -84,8 +84,15 @@ public class Controller {
         try {
             this.loadClassIntoMap(CONF_PATH);
         } catch (Exception e) {
-            System.out.println("Error reading configuration file:" + CONF_PATH);
-            System.exit(0);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Config file error");
+            alert.setHeaderText(null);
+            if (e.getClass().getSimpleName().equals("FileNotFoundException")) {
+                alert.setContentText("Config file dataStructureList.txt not found");
+            } else {
+                alert.setContentText("Config file dataStructureList.txt is misformatted");
+            }
+            alert.showAndWait();
         }
     }
 
