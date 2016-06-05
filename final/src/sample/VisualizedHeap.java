@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -14,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -112,7 +115,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
             countInRow++;
         }
         return list;
-
     }
 
     /**
@@ -209,7 +211,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
      * @return true if the input is valid, false if not
      */
     @Override
-    public boolean deserialize(String stringRepresentation) {
+    public boolean deserialize(String stringRepresentation) throws Exception{
         if (stringRepresentation.isEmpty()) {
             this.heap.clear();
             return true;
@@ -263,7 +265,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
         groupBox.getChildren().add(maxHeap);
         groupBox.setSpacing(5);
         extraControls.add(groupBox);
-
         // set the radio button actions
         maxHeap.setOnAction(event -> {
             PriorityQueue<Integer> newHeap = new PriorityQueue<>(this.heap.size() + 1, new maxHeapComparator());

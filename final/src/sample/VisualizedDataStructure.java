@@ -46,7 +46,7 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
      * @return The data structure
      */
     @Override
-    abstract public boolean deserialize(String inputString);
+    abstract public boolean deserialize(String inputString) throws Exception;
 
     /**
      * Return the nodes to show to the user
