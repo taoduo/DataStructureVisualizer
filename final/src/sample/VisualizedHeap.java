@@ -58,7 +58,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
         }
     }
 
-
     /**
      * Returns visual representation of nodes of the data structure
      *
@@ -216,7 +215,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
             return true;
         }
         String[] arr = stringRepresentation.split("\\s+");
-        PriorityQueue<Integer> tempHeap = new PriorityQueue<Integer>();
+        /*PriorityQueue<Integer> tempHeap = new PriorityQueue<Integer>();
         for (String str : arr) {
             if (this.isInt(str)) {
                 tempHeap.offer(Integer.parseInt(str));
@@ -224,7 +223,15 @@ public class VisualizedHeap extends VisualizedDataStructure {
                 return false;
             }
         }
-        this.heap = tempHeap;
+        this.heap = tempHeap;*/
+        this.heap.clear();
+        for (String str : arr) {
+            if (this.isInt(str)) {
+                this.heap.offer(Integer.parseInt(str));
+            } else {
+                return false;
+            }
+        }
         return true;
     }
 
