@@ -23,10 +23,10 @@ import javafx.scene.shape.Line;
  */
 public class VisualizedQueue extends VisualizedDataStructure {
     private Queue<Integer> queue;
-    private static final int X_ADJUSTMENT = 25;
+    private static final int X_ADJUSTMENT = 40;
     private static final int Y_ADJUSTMENT = 15;
     private static final int LINE_WIDTH = 5;
-    private static final int RADIUS = 25;
+    private static final int RADIUS = 30;
 
     /**
      * Empty queue constructor
@@ -115,9 +115,6 @@ public class VisualizedQueue extends VisualizedDataStructure {
         Button button1 = new Button("Enqueue");
         button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
-        textField1.setOnMouseClicked(event -> {
-            textField1.selectAll();
-        });
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 this.queue.offer(Integer.parseInt(textField1.getText()));
@@ -126,8 +123,8 @@ public class VisualizedQueue extends VisualizedDataStructure {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
-                alert.setHeaderText("Non-numeric input");
-                alert.setContentText("\"" + textField1.getText() + "\" is not a Integer");
+                alert.setHeaderText("Invalid input");
+                alert.setContentText("\"" + textField1.getText() + "\" is not valid. Only integers no more than six digits are accepted.");
                 alert.showAndWait();
             }
         };

@@ -22,7 +22,7 @@ public class VisualizedStack extends VisualizedDataStructure {
     private Stack<Integer> stack;
     private static final int RECTANGLE_WIDTH = 100;
     private static final int RECTANGLE_HEIGHT = 30;
-    private static final int X_ADJUSTMENT = 5;
+    private static final int X_ADJUSTMENT = 30;
     private static final int Y_ADJUSTMENT = 10;
     private static final int CEILING_GAP = 5;
     private static final int GROUND_HEIGHT = 10;
@@ -106,9 +106,6 @@ public class VisualizedStack extends VisualizedDataStructure {
         Button button1 = new Button("Push");
         button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
-        textField1.setOnMouseClicked(event -> {
-            textField1.selectAll();
-        });
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 this.controller.refreshOutput(Integer.toString(
@@ -117,8 +114,8 @@ public class VisualizedStack extends VisualizedDataStructure {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
-                alert.setHeaderText("Non-numeric input");
-                alert.setContentText("\"" + textField1.getText() + "\" is not a Integer");
+                alert.setHeaderText("Invaid input");
+                alert.setContentText("\"" + textField1.getText() + "\" is not valid. Only integers no more than six digits are accepted.");
                 alert.showAndWait();
             }
         };

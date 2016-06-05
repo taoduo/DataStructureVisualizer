@@ -7,7 +7,6 @@ import java.util.PriorityQueue;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,8 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -80,18 +77,21 @@ public class VisualizedHeap extends VisualizedDataStructure {
         double lineEndX;
         double widthOfBoard = 300;
         if (this.heap.size() > 15) {
-            controller.displayBoard.setMinWidth(widthOfBoard * Math.pow(2, (((int) (Math.log(this.heap.size())/Math.log(2)))- 3)));
+            controller.displayBoard.setMinWidth(widthOfBoard *
+                    Math.pow(2, (((int) (Math.log(this.heap.size()) / Math.log(2))) - 3)));
+        } else {
+            controller.displayBoard.setMinWidth(widthOfBoard);
         }
-        else { controller.displayBoard.setMinWidth(widthOfBoard); }
 
         for (Object item : arrayOfInt) {
             Rectangle rectangle = new Rectangle(RECTANGLE_SIDELENGTH, RECTANGLE_SIDELENGTH);
-            logOfCount = Math.log(count)/Math.log(2);
-            if (logOfCount%1 == 0) {
+            logOfCount = Math.log(count) / Math.log(2);
+            if (logOfCount % 1 == 0) {
                 countInRow = 0;
             }
             intLogOfCount = (int) logOfCount;
-            x = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
+            x = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 -
+                    rectangle.getWidth() / 2 * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
             y = CEILING_GAP + intLogOfCount * (rectangle.getHeight() + GAP_BETWEEN_ROW);
             rectangle.setX(x);
             rectangle.setY(y);
@@ -104,9 +104,11 @@ public class VisualizedHeap extends VisualizedDataStructure {
                 Line line = new Line();
                 line.setStartX(rectangle.getX() + rectangle.getWidth() / 2);
                 line.setStartY(rectangle.getY());
-                lineEndX = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, (intLogOfCount-1)) + ( (countInRow/2) + 1) * rectangle.getWidth();
-                line.setEndX(lineEndX - rectangle.getWidth()/2);
-                line.setEndY(line.getStartY()-GAP_BETWEEN_ROW);
+                lineEndX = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 -
+                        rectangle.getWidth() / 2 * Math.pow(2, (intLogOfCount - 1)) +
+                        ((countInRow / 2) + 1) * rectangle.getWidth();
+                line.setEndX(lineEndX - rectangle.getWidth() / 2);
+                line.setEndY(line.getStartY() - GAP_BETWEEN_ROW);
                 list.add(line);
             }
             list.add(rectangle);
@@ -129,9 +131,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
         Button button1 = new Button("add");
         button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
-        textField1.setOnMouseClicked(event -> {
-            textField1.selectAll();
-        });
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 heap.offer(Integer.parseInt(textField1.getText()));
@@ -140,8 +139,8 @@ public class VisualizedHeap extends VisualizedDataStructure {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Input Error");
-                alert.setHeaderText("Non-numeric input");
-                alert.setContentText("\"" + textField1.getText() + "\" is not a number");
+                alert.setHeaderText("Invalid input");
+                alert.setContentText("\"" + textField1.getText() + "\" is not valid. Only integers no more than six digits are accepted.");
                 alert.showAndWait();
             }
         };
