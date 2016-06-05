@@ -11,7 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -36,7 +39,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
      */
     public VisualizedHeap(Controller controller) {
         super(controller);
-        this.heap = new PriorityQueue<Integer>();
+        this.heap = new PriorityQueue<>();
     }
 
     /**
@@ -212,5 +215,28 @@ public class VisualizedHeap extends VisualizedDataStructure {
         }
         this.heap = tempHeap;
         return true;
+    }
+
+    @Override
+    public List<Node> extraControls() {
+        List<Node> extraControls = new ArrayList<>();
+        ToggleGroup group = new ToggleGroup();
+        RadioButton maxHeap = new RadioButton("Max Heap");
+        RadioButton minHeap = new RadioButton("Min Heap");
+        minHeap.setSelected(true);
+        maxHeap.setToggleGroup(group);
+        minHeap.setToggleGroup(group);
+        HBox groupBox = new HBox();
+        groupBox.getChildren().add(minHeap);
+        groupBox.getChildren().add(maxHeap);
+        groupBox.setSpacing(5);
+        extraControls.add(groupBox);
+        maxHeap.setOnAction(event -> {
+            System.out.println("max heap selected");
+        });
+        minHeap.setOnAction(event -> {
+            System.out.println("min heap selected");
+        });
+        return extraControls;
     }
 }

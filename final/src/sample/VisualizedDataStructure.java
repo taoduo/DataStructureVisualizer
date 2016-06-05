@@ -1,5 +1,6 @@
 package sample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Node;
@@ -66,4 +67,14 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
      * @return true if it is, false if not
      */
     abstract public boolean isEmpty();
+
+    /**
+     * If the users have any more special controls, the components are defined here
+     * @return if not override, return an empty list
+     */
+    @Override
+    public List<Node> extraControls() {
+        List<Node> controls = new ArrayList<>();
+        return controls;
+    }
 }

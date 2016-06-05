@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -51,7 +52,12 @@ public class Controller {
     public VBox textFieldVBox;
     @FXML
     public Label outputLabel;
-
+    @FXML
+    public VBox controlPanel;
+    @FXML
+    public HBox staticPanel;
+    @FXML
+    public Label staticLabel;
     private boolean initialized = false;
     private HashMap<String, Class> nameClassMap = new HashMap<String, Class>();
     private VisualizedDataStructure visualizedDataStructure = null;
@@ -181,12 +187,20 @@ public class Controller {
         // add the controls
         List<ViewableDataStructure.ControlWrapper> controlList = this.visualizedDataStructure.getControls();
         //added this code to clear before drawing new buttons.
+        controlPanel.getChildren().clear();
+        controlPanel.getChildren().add(staticLabel);
         buttonVBox.getChildren().clear();
         textFieldVBox.getChildren().clear();
+        controlPanel.getChildren().add(staticPanel);
         for (ViewableDataStructure.ControlWrapper controlWrapper : controlList) {
             buttonVBox.getChildren().add(controlWrapper.button);
             controlWrapper.button.setOnAction(controlWrapper.handler);
             textFieldVBox.getChildren().add(controlWrapper.textField);
+        }
+        List<Node> extraControls = this.visualizedDataStructure.extraControls();
+        // add extra customized controls
+        for (Node node : extraControls) {
+            this.controlPanel.getChildren().add(node);
         }
         // clear up the outputs
         this.refreshOutput("Output");
