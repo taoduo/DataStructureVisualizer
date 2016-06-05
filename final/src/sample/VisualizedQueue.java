@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
 /**
  * The model class of Queue in MVC
@@ -116,6 +115,9 @@ public class VisualizedQueue extends VisualizedDataStructure {
         Button button1 = new Button("Enqueue");
         button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
+        textField1.setOnMouseClicked(event -> {
+            textField1.selectAll();
+        });
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 this.queue.offer(Integer.parseInt(textField1.getText()));

@@ -44,7 +44,9 @@ public class SettingController {
         if (!this.isInt(randomMin.getText())) {
             return false;
         }
-        if (!this.isInt(randomSize.getText()) || Integer.parseInt(randomSize.getText()) < 0) {
+        int min = Integer.parseInt(randomMin.getText());
+        int max = Integer.parseInt(randomMax.getText());
+        if (!this.isInt(randomSize.getText()) || Integer.parseInt(randomSize.getText()) < 0 || min > max) {
             return false;
         }
         return true;

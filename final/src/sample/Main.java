@@ -17,7 +17,8 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Data Structure Visualizer");
-        primaryStage.setScene(new Scene(root, 700, 475));
+        primaryStage.setScene(new Scene(root, 700, 500));
+        primaryStage.sizeToScene();
         primaryStage.setResizable(false);
         primaryStage.show();
     }

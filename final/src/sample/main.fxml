@@ -78,7 +78,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="367.0" layoutY="72.0" prefHeight="255.0" prefWidth="292.0">
+      <VBox layoutX="367.0" layoutY="35.0" prefHeight="255.0" prefWidth="292.0">
          <children>
             <Label text="3. Data Struture Display">
                <VBox.margin>
@@ -95,39 +95,53 @@
             </ScrollPane>
          </children>
       </VBox>
-      <VBox layoutX="367.0" layoutY="339.0" prefHeight="119.0" prefWidth="300.0">
+      <VBox layoutX="367.0" layoutY="301.0" prefHeight="138.0" prefWidth="292.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="308.0" text="4. Operate the Data Structure">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin></Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox fx:id="buttonVBox" prefHeight="100.0" prefWidth="85.0" spacing="5.0">
+            <Label prefHeight="17.0" prefWidth="308.0" text="4. Operate the Data Structure" />
+            <ScrollPane prefViewportHeight="119.0" prefViewportWidth="300.0">
+               <content>
+                  <VBox fx:id="controlPanel" layoutX="367.0" layoutY="339.0" prefHeight="118.0" prefWidth="261.0" spacing="5.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="Operations" />
-                     </children>
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding></VBox>
-                  <VBox fx:id="textFieldVBox" prefHeight="100.0" prefWidth="122.0" spacing="5.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" text="Inputs" />
-                     </children>
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding></VBox>
-                  <VBox prefHeight="100.0" prefWidth="99.0">
-                     <children>
-                        <Label fx:id="outputLabel" alignment="CENTER" prefHeight="105.0" prefWidth="97.0" text="Output">
-                           <padding>
-                              <Insets left="5.0" top="10.0" />
-                           </padding>
-                        </Label>
+                        <HBox fx:id="staticPanel" prefHeight="117.0" prefWidth="199.0">
+                           <children>
+                              <VBox prefHeight="100.0" prefWidth="84.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="Operations" />
+                                    <VBox fx:id="buttonVBox" prefHeight="100.0" prefWidth="85.0" spacing="5.0">
+                                       <padding>
+                                          <Insets right="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" text="Inputs" />
+                                    <VBox fx:id="textFieldVBox" prefHeight="100.0" prefWidth="93.0" spacing="5.0">
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="100.0" prefWidth="99.0">
+                                 <children>
+                                    <Label fx:id="outputLabel" alignment="CENTER" prefHeight="100.0" prefWidth="104.0" style="-fx-border-color: black;" text="Output">
+                                       <padding>
+                                          <Insets left="5.0" top="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
-               </children>
-            </HBox>
+               </content>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </ScrollPane>
          </children>
       </VBox>
    </children>

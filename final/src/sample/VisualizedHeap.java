@@ -1,6 +1,7 @@
 package sample;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -10,7 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -19,6 +23,7 @@ import java.lang.Math;
 
 /**
  * The model class of Heap in MVC
+ *
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public class VisualizedHeap extends VisualizedDataStructure {
@@ -34,14 +39,15 @@ public class VisualizedHeap extends VisualizedDataStructure {
      */
     public VisualizedHeap(Controller controller) {
         super(controller);
-        this.heap = new PriorityQueue<Integer>();
+        this.heap = new PriorityQueue<>();
     }
 
     /**
      * Reset the heap with random numbers
+     *
      * @param size The size of the heap
-     * @param min The min of random numbers
-     * @param max The max of random numbers
+     * @param min  The min of random numbers
+     * @param max  The max of random numbers
      */
     @Override
     public void randomize(int size, int min, int max) {
@@ -55,6 +61,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Returns visual representation of nodes of the data structure
+     *
      * @return the viewable nodes of the data structure
      */
     @Override
@@ -82,7 +89,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
                 countInRow = 0;
             }
             intLogOfCount = (int) logOfCount;
-            System.out.println(count + " COUNT! " + controller.displayBoard.getMinWidth() + " WIDTH! ");
             x = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
             y = CEILING_GAP + intLogOfCount * (rectangle.getHeight() + GAP_BETWEEN_ROW);
             rectangle.setX(x);
@@ -94,7 +100,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
             label.setLayoutY(y + Y_ADJUSTMENT);
             if (count > 1) {
                 Line line = new Line();
-                line.setStartX(rectangle.getX() + rectangle.getWidth()/2);
+                line.setStartX(rectangle.getX() + rectangle.getWidth() / 2);
                 line.setStartY(rectangle.getY());
                 lineEndX = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, (intLogOfCount-1)) + ( (countInRow/2) + 1) * rectangle.getWidth();
                 line.setEndX(lineEndX - rectangle.getWidth()/2);
@@ -112,6 +118,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Get and returns control components
+     *
      * @return control components
      */
     @Override
@@ -121,6 +128,9 @@ public class VisualizedHeap extends VisualizedDataStructure {
         Button button1 = new Button("add");
         button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
+        textField1.setOnMouseClicked(event -> {
+            textField1.selectAll();
+        });
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 heap.offer(Integer.parseInt(textField1.getText()));
@@ -171,6 +181,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Tells if the heap is empty
+     *
      * @return true if it is empty, false if not
      */
     @Override
@@ -180,6 +191,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Turns the heap into the string
+     *
      * @return the string result of serialization
      */
     @Override
@@ -193,6 +205,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Parse a string to get the heap
+     *
      * @param stringRepresentation the input string
      * @return true if the input is valid, false if not
      */
@@ -213,5 +226,63 @@ public class VisualizedHeap extends VisualizedDataStructure {
         }
         this.heap = tempHeap;
         return true;
+    }
+
+    /**
+     * Comparator used to create max heap, reverse the natural order of integers
+     */
+    private class maxHeapComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer x, Integer y) {
+            if (x < y) {
+                return 1;
+            }
+            if (x > y) {
+                return -1;
+            }
+            return 0;
+        }
+    }
+
+    /**
+     * Extra control for the heap, switch back and forth from max and min heap
+     *
+     * @return the list of extra control components
+     */
+    @Override
+    public List<Node> extraControls() {
+        List<Node> extraControls = new ArrayList<>();
+
+        // add the radio buttons
+        ToggleGroup group = new ToggleGroup();
+        RadioButton maxHeap = new RadioButton("Max Heap");
+        RadioButton minHeap = new RadioButton("Min Heap");
+        minHeap.setSelected(true);
+        maxHeap.setToggleGroup(group);
+        minHeap.setToggleGroup(group);
+        HBox groupBox = new HBox();
+        groupBox.getChildren().add(minHeap);
+        groupBox.getChildren().add(maxHeap);
+        groupBox.setSpacing(5);
+        extraControls.add(groupBox);
+
+        // set the radio button actions
+        maxHeap.setOnAction(event -> {
+            PriorityQueue<Integer> newHeap = new PriorityQueue<>(this.heap.size() + 1, new maxHeapComparator());
+            while (!this.heap.isEmpty()) {
+                newHeap.add(this.heap.poll());
+            }
+            this.heap = newHeap;
+            this.controller.refreshOutput("Output");
+        });
+        minHeap.setOnAction(event -> {
+            PriorityQueue<Integer> newHeap = new PriorityQueue<>();
+            while (!this.heap.isEmpty()) {
+                newHeap.add(this.heap.poll());
+            }
+            this.heap = newHeap;
+            this.controller.refreshOutput("Output");
+        });
+        return extraControls;
     }
 }

@@ -19,6 +19,7 @@ public interface ViewableDataStructure {
         public TextField textField;
         public Button button;
         public EventHandler<ActionEvent> handler;
+
         public ControlWrapper(TextField textField, Button button, EventHandler<ActionEvent> handler) {
             this.textField = textField;
             this.button = button;
@@ -28,13 +29,21 @@ public interface ViewableDataStructure {
 
     /**
      * This method returns all the data as Nodes as a list
+     *
      * @return a list of Nodes to be shown
      */
     List<Node> getNodes();
 
     /**
      * This method returns all control options of the data structure as a list of wrappers
+     *
      * @return a list of ControlWrapper that has all the control components
      */
     List<ControlWrapper> getControls();
+
+    /**
+     * If the users have any more special controls, the components are defined here
+     * @return if not override, return an empty list
+     */
+    List<Node> extraControls();
 }
