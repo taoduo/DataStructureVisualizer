@@ -28,8 +28,9 @@ import java.lang.Math;
  */
 public class VisualizedHeap extends VisualizedDataStructure {
     private PriorityQueue<Integer> heap;
-    private static final int RECTANGLE_SIDELENGTH = 30;
-    private static final int X_ADJUSTMENT = 10;
+    private static final int RECTANGLE_Width = 100;
+    private static final int RECTANGLE_Height = 30;
+    private static final int X_ADJUSTMENT = 30;
     private static final int Y_ADJUSTMENT = 6;
     private static final int CEILING_GAP = 5;
     private static final int GAP_BETWEEN_ROW = 30;
@@ -76,15 +77,15 @@ public class VisualizedHeap extends VisualizedDataStructure {
         double y;
         double lineEndX;
         double widthOfBoard = 300;
-        if (this.heap.size() > 15) {
+        if (this.heap.size() > 1) {
             controller.displayBoard.setMinWidth(widthOfBoard *
-                    Math.pow(2, (((int) (Math.log(this.heap.size()) / Math.log(2))) - 3)));
+                    Math.pow(2, (((int) (Math.log(this.heap.size()) / Math.log(2))) - 1)));
         } else {
             controller.displayBoard.setMinWidth(widthOfBoard);
         }
 
         for (Object item : arrayOfInt) {
-            Rectangle rectangle = new Rectangle(RECTANGLE_SIDELENGTH, RECTANGLE_SIDELENGTH);
+            Rectangle rectangle = new Rectangle(RECTANGLE_Width, RECTANGLE_Height);
             logOfCount = Math.log(count) / Math.log(2);
             if (logOfCount % 1 == 0) {
                 countInRow = 0;
@@ -93,12 +94,12 @@ public class VisualizedHeap extends VisualizedDataStructure {
             x = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 -
                     rectangle.getWidth() / 2 * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
             y = CEILING_GAP + intLogOfCount * (rectangle.getHeight() + GAP_BETWEEN_ROW);
-            rectangle.setX(x);
+            rectangle.setX(x + X_ADJUSTMENT);
             rectangle.setY(y);
             rectangle.setFill(Color.WHITE);
             rectangle.setStroke(Color.BLACK);
             Label label = new Label(item.toString());
-            label.setLayoutX(x + X_ADJUSTMENT);
+            label.setLayoutX(x + 2 * X_ADJUSTMENT);
             label.setLayoutY(y + Y_ADJUSTMENT);
             if (count > 1) {
                 Line line = new Line();
@@ -107,7 +108,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
                 lineEndX = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 -
                         rectangle.getWidth() / 2 * Math.pow(2, (intLogOfCount - 1)) +
                         ((countInRow / 2) + 1) * rectangle.getWidth();
-                line.setEndX(lineEndX - rectangle.getWidth() / 2);
+                line.setEndX(lineEndX - rectangle.getWidth() / 2 + X_ADJUSTMENT);
                 line.setEndY(line.getStartY() - GAP_BETWEEN_ROW);
                 list.add(line);
             }
