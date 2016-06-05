@@ -2,7 +2,6 @@ package sample;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -217,21 +216,23 @@ public class VisualizedHeap extends VisualizedDataStructure {
         this.heap = tempHeap;
         return true;
     }
+
+    /**
+     * Comparator used to create max heap, reverse the natural order of integers
+     */
     private class maxHeapComparator implements Comparator<Integer> {
         @Override
-        public int compare(Integer x, Integer y)
-        {
-            if (x < y)
-            {
+        public int compare(Integer x, Integer y) {
+            if (x < y) {
                 return 1;
             }
-            if (x > y)
-            {
+            if (x > y) {
                 return -1;
             }
             return 0;
         }
     }
+
     /**
      * Extra control for the heap, switch back and forth from max and min heap
      * @return the list of extra control components
@@ -239,6 +240,8 @@ public class VisualizedHeap extends VisualizedDataStructure {
     @Override
     public List<Node> extraControls() {
         List<Node> extraControls = new ArrayList<>();
+
+        // add the radio buttons
         ToggleGroup group = new ToggleGroup();
         RadioButton maxHeap = new RadioButton("Max Heap");
         RadioButton minHeap = new RadioButton("Min Heap");
@@ -250,6 +253,8 @@ public class VisualizedHeap extends VisualizedDataStructure {
         groupBox.getChildren().add(maxHeap);
         groupBox.setSpacing(5);
         extraControls.add(groupBox);
+
+        // set the radio button actions
         maxHeap.setOnAction(event -> {
             PriorityQueue<Integer> newHeap = new PriorityQueue<>(this.heap.size(), new maxHeapComparator());
             while (!this.heap.isEmpty()) {
