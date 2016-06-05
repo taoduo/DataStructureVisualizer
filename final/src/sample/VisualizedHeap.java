@@ -217,6 +217,10 @@ public class VisualizedHeap extends VisualizedDataStructure {
         return true;
     }
 
+    /**
+     * Extra control for the heap, switch back and forth from max and min heap
+     * @return the list of extra control components
+     */
     @Override
     public List<Node> extraControls() {
         List<Node> extraControls = new ArrayList<>();
