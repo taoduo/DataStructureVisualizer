@@ -256,7 +256,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
         // set the radio button actions
         maxHeap.setOnAction(event -> {
-            PriorityQueue<Integer> newHeap = new PriorityQueue<>(this.heap.size(), new maxHeapComparator());
+            PriorityQueue<Integer> newHeap = new PriorityQueue<>(this.heap.size() + 1, new maxHeapComparator());
             while (!this.heap.isEmpty()) {
                 newHeap.add(this.heap.poll());
             }

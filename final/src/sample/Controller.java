@@ -56,8 +56,6 @@ public class Controller {
     public VBox controlPanel;
     @FXML
     public HBox staticPanel;
-    @FXML
-    public Label staticLabel;
     private boolean initialized = false;
     private HashMap<String, Class> nameClassMap = new HashMap<String, Class>();
     private VisualizedDataStructure visualizedDataStructure = null;
@@ -188,7 +186,6 @@ public class Controller {
         List<ViewableDataStructure.ControlWrapper> controlList = this.visualizedDataStructure.getControls();
         //added this code to clear before drawing new buttons.
         controlPanel.getChildren().clear();
-        controlPanel.getChildren().add(staticLabel);
         buttonVBox.getChildren().clear();
         textFieldVBox.getChildren().clear();
         controlPanel.getChildren().add(staticPanel);
