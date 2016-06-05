@@ -215,15 +215,6 @@ public class VisualizedHeap extends VisualizedDataStructure {
             return true;
         }
         String[] arr = stringRepresentation.split("\\s+");
-        /*PriorityQueue<Integer> tempHeap = new PriorityQueue<Integer>();
-        for (String str : arr) {
-            if (this.isInt(str)) {
-                tempHeap.offer(Integer.parseInt(str));
-            } else {
-                return false;
-            }
-        }
-        this.heap = tempHeap;*/
         this.heap.clear();
         for (String str : arr) {
             if (this.isInt(str)) {
