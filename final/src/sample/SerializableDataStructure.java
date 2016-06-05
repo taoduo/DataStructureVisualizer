@@ -17,5 +17,5 @@ public interface SerializableDataStructure {
      * @param inputString the string to be parsed
      * @return The data structure
      */
-    boolean deserialize(String inputString) throws Exception;
+    boolean deserialize(String inputString);
 }

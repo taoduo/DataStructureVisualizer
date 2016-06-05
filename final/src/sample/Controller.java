@@ -228,14 +228,8 @@ public class Controller {
         if (this.visualizedDataStructure.isEmpty() ||
                 (!this.visualizedDataStructure.isEmpty() && this.alertReinitialize())) {
             String inputString = dataField.getText();
-            try {
-                boolean viable = this.visualizedDataStructure.deserialize(inputString);
-                if (!viable) {
-                    alertError(inputString, "Invalid Input");
-                    return;
-                }
-            } catch (Exception e) {
-                // if there is any exception while parsing
+            boolean viable = this.visualizedDataStructure.deserialize(inputString);
+            if (!viable) {
                 alertError(inputString, "Invalid Input");
                 return;
             }

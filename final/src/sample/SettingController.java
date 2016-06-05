@@ -18,8 +18,8 @@ public class SettingController {
     public TextField randomMax;
     @FXML
     public TextField randomSize;
-    private boolean isInt(String s) {
-        return s.matches("[-+]?\\d+");
+    boolean isInt(String s) {
+        return s.matches("[-+]?\\d(\\d?){5}");
     }
 
     /**

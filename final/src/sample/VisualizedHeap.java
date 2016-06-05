@@ -211,7 +211,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
      * @return true if the input is valid, false if not
      */
     @Override
-    public boolean deserialize(String stringRepresentation) throws Exception{
+    public boolean deserialize(String stringRepresentation) {
         if (stringRepresentation.isEmpty()) {
             this.heap.clear();
             return true;

@@ -20,7 +20,7 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
     }
 
     protected boolean isInt(String s) {
-        return s.matches("[-+]?\\d+");
+        return s.matches("[-+]?\\d(\\d?){5}");
     }
 
     /**
@@ -46,7 +46,7 @@ public abstract class VisualizedDataStructure implements ViewableDataStructure, 
      * @return The data structure
      */
     @Override
-    abstract public boolean deserialize(String inputString) throws Exception;
+    abstract public boolean deserialize(String inputString);
 
     /**
      * Return the nodes to show to the user
