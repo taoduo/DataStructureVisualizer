@@ -117,6 +117,9 @@ public class VisualizedHeap extends VisualizedDataStructure {
         Button button1 = new Button("add");
         button1.setPrefWidth(1000);
         TextField textField1 = new TextField();
+        textField1.setOnMouseClicked(event -> {
+            textField1.selectAll();
+        });
         EventHandler<ActionEvent> eventHandler1 = event -> {
             if (this.isInt(textField1.getText())) {
                 heap.offer(Integer.parseInt(textField1.getText()));
