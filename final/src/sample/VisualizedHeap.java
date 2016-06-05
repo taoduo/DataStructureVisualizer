@@ -28,9 +28,9 @@ import java.lang.Math;
  */
 public class VisualizedHeap extends VisualizedDataStructure {
     private PriorityQueue<Integer> heap;
-    private static final int RECTANGLE_Width = 100;
+    private static final int RECTANGLE_Width = 70;
     private static final int RECTANGLE_Height = 30;
-    private static final int X_ADJUSTMENT = 30;
+    private static final int X_ADJUSTMENT = 10;
     private static final int Y_ADJUSTMENT = 6;
     private static final int CEILING_GAP = 5;
     private static final int GAP_BETWEEN_ROW = 30;
