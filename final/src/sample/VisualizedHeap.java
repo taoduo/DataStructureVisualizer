@@ -1,6 +1,7 @@
 package sample;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -216,7 +217,21 @@ public class VisualizedHeap extends VisualizedDataStructure {
         this.heap = tempHeap;
         return true;
     }
-
+    private class maxHeapComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer x, Integer y)
+        {
+            if (x < y)
+            {
+                return 1;
+            }
+            if (x > y)
+            {
+                return -1;
+            }
+            return 0;
+        }
+    }
     /**
      * Extra control for the heap, switch back and forth from max and min heap
      * @return the list of extra control components
@@ -236,10 +251,20 @@ public class VisualizedHeap extends VisualizedDataStructure {
         groupBox.setSpacing(5);
         extraControls.add(groupBox);
         maxHeap.setOnAction(event -> {
-            System.out.println("max heap selected");
+            PriorityQueue<Integer> newHeap = new PriorityQueue<>(this.heap.size(), new maxHeapComparator());
+            while (!this.heap.isEmpty()) {
+                newHeap.add(this.heap.poll());
+            }
+            this.heap = newHeap;
+            this.controller.refreshOutput("Output");
         });
         minHeap.setOnAction(event -> {
-            System.out.println("min heap selected");
+            PriorityQueue<Integer> newHeap = new PriorityQueue<>();
+            while (!this.heap.isEmpty()) {
+                newHeap.add(this.heap.poll());
+            }
+            this.heap = newHeap;
+            this.controller.refreshOutput("Output");
         });
         return extraControls;
     }
