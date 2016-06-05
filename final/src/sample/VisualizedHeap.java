@@ -1,7 +1,6 @@
 package sample;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -24,12 +23,11 @@ import java.lang.Math;
  */
 public class VisualizedHeap extends VisualizedDataStructure {
     private PriorityQueue<Integer> heap;
-    private static final int RECTANGLE_WIDTH = 30;
-    private static final int RECTANGLE_HEIGHT = 30;
+    private static final int RECTANGLE_SIDELENGTH = 30;
     private static final int X_ADJUSTMENT = 10;
     private static final int Y_ADJUSTMENT = 6;
     private static final int CEILING_GAP = 5;
-    private static final int GAP_BETWEEN_ROW = 10;
+    private static final int GAP_BETWEEN_ROW = 30;
 
     /**
      * Empty heap constructor
@@ -70,16 +68,22 @@ public class VisualizedHeap extends VisualizedDataStructure {
         int countInRow = 0;
         double x;
         double y;
-        double lineEndX = 0;
+        double lineEndX;
+        double widthOfBoard = 300;
+        if (this.heap.size() > 15) {
+            controller.displayBoard.setMinWidth(widthOfBoard * Math.pow(2, (((int) (Math.log(this.heap.size())/Math.log(2)))- 3)));
+        }
+        else { controller.displayBoard.setMinWidth(widthOfBoard); }
 
         for (Object item : arrayOfInt) {
-            Rectangle rectangle = new Rectangle(RECTANGLE_WIDTH, RECTANGLE_HEIGHT);
+            Rectangle rectangle = new Rectangle(RECTANGLE_SIDELENGTH, RECTANGLE_SIDELENGTH);
             logOfCount = Math.log(count)/Math.log(2);
             if (logOfCount%1 == 0) {
                 countInRow = 0;
             }
             intLogOfCount = (int) logOfCount;
-            x = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
+            System.out.println(count + " COUNT! " + controller.displayBoard.getMinWidth() + " WIDTH! ");
+            x = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
             y = CEILING_GAP + intLogOfCount * (rectangle.getHeight() + GAP_BETWEEN_ROW);
             rectangle.setX(x);
             rectangle.setY(y);
@@ -92,7 +96,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
                 Line line = new Line();
                 line.setStartX(rectangle.getX() + rectangle.getWidth()/2);
                 line.setStartY(rectangle.getY());
-                lineEndX = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, (intLogOfCount-1)) + ((int) ((countInRow)/2) + 1) * rectangle.getWidth();
+                lineEndX = (controller.displayBoard.getMinWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, (intLogOfCount-1)) + ( (countInRow/2) + 1) * rectangle.getWidth();
                 line.setEndX(lineEndX - rectangle.getWidth()/2);
                 line.setEndY(line.getStartY()-GAP_BETWEEN_ROW);
                 list.add(line);
