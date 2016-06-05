@@ -23,6 +23,7 @@ import java.lang.Math;
 
 /**
  * The model class of Heap in MVC
+ *
  * @author Claire Tagoe, Duo Tao and Yijun Wang
  */
 public class VisualizedHeap extends VisualizedDataStructure {
@@ -44,9 +45,10 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Reset the heap with random numbers
+     *
      * @param size The size of the heap
-     * @param min The min of random numbers
-     * @param max The max of random numbers
+     * @param min  The min of random numbers
+     * @param max  The max of random numbers
      */
     @Override
     public void randomize(int size, int min, int max) {
@@ -60,6 +62,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Returns visual representation of nodes of the data structure
+     *
      * @return the viewable nodes of the data structure
      */
     @Override
@@ -77,12 +80,12 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
         for (Object item : arrayOfInt) {
             Rectangle rectangle = new Rectangle(RECTANGLE_WIDTH, RECTANGLE_HEIGHT);
-            logOfCount = Math.log(count)/Math.log(2);
-            if (logOfCount%1 == 0) {
+            logOfCount = Math.log(count) / Math.log(2);
+            if (logOfCount % 1 == 0) {
                 countInRow = 0;
             }
             intLogOfCount = (int) logOfCount;
-            x = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
+            x = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth() / 2 * Math.pow(2, intLogOfCount) + countInRow * rectangle.getWidth();
             y = CEILING_GAP + intLogOfCount * (rectangle.getHeight() + GAP_BETWEEN_ROW);
             rectangle.setX(x);
             rectangle.setY(y);
@@ -93,11 +96,11 @@ public class VisualizedHeap extends VisualizedDataStructure {
             label.setLayoutY(y + Y_ADJUSTMENT);
             if (count > 1) {
                 Line line = new Line();
-                line.setStartX(rectangle.getX() + rectangle.getWidth()/2);
+                line.setStartX(rectangle.getX() + rectangle.getWidth() / 2);
                 line.setStartY(rectangle.getY());
-                lineEndX = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth()/2  * Math.pow(2, (intLogOfCount-1)) + ((int) ((countInRow)/2) + 1) * rectangle.getWidth();
-                line.setEndX(lineEndX - rectangle.getWidth()/2);
-                line.setEndY(line.getStartY()-GAP_BETWEEN_ROW);
+                lineEndX = (controller.displayBoard.getWidth() - rectangle.getWidth()) / 2 - rectangle.getWidth() / 2 * Math.pow(2, (intLogOfCount - 1)) + ((int) ((countInRow) / 2) + 1) * rectangle.getWidth();
+                line.setEndX(lineEndX - rectangle.getWidth() / 2);
+                line.setEndY(line.getStartY() - GAP_BETWEEN_ROW);
                 list.add(line);
             }
             list.add(rectangle);
@@ -111,6 +114,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Get and returns control components
+     *
      * @return control components
      */
     @Override
@@ -173,6 +177,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Tells if the heap is empty
+     *
      * @return true if it is empty, false if not
      */
     @Override
@@ -182,6 +187,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Turns the heap into the string
+     *
      * @return the string result of serialization
      */
     @Override
@@ -195,6 +201,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Parse a string to get the heap
+     *
      * @param stringRepresentation the input string
      * @return true if the input is valid, false if not
      */
@@ -235,6 +242,7 @@ public class VisualizedHeap extends VisualizedDataStructure {
 
     /**
      * Extra control for the heap, switch back and forth from max and min heap
+     *
      * @return the list of extra control components
      */
     @Override
